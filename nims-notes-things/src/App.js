@@ -1,25 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import TextArea from './TextArea';
+import React, { useState } from 'react';
 
 function App() {
+
+  const [formData, setFormData] = useState({note: ''});
+
+  const handleOnChange = (e, key) => {
+    const newForm = {
+      ...formData,
+      [key]: e.target.value,
+    }
+   setFormData(newForm)
+  }
+
+  const handleOnBlur = e => {
+    if(formData.note === ''){
+      alert(e.target.note + " is required")
+    }
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TextArea
+        name= "name"
+        placeholder="Please Enter Your Note"
+        onChange={(e)=> handleOnChange(e, "note")}
+        onBlur={handleOnBlur}
+        value={formData.note}
+      />
+    <h5>Note: {formData.note}</h5>
     </div>
   );
-}
+};
 
 export default App;

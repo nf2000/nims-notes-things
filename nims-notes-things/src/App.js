@@ -1,7 +1,6 @@
 import './App.css';
 import Input from './input';
-import React,{useState} from "react";
-
+import React, { useState } from 'react';
 
 function App() {
 
@@ -15,11 +14,13 @@ function App() {
     }
    setFormData(newForm)
   }
+
   const handleOnBlur = e => {
     if(formData.name === ''){
       alert(e.target.name + " is required")
     }
   }
+  
   return (
     <div className="App">
       <Input

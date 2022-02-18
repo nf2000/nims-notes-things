@@ -6,7 +6,7 @@ import React,{useState} from "react";
 function App() {
 
   const [formData, setFormData] = useState({name: ''});
-  const [formValid, setFormValid] =useState({name: false});
+  // const [formValid, setFormValid] =useState({name: false});
 
   const handleOnChange = (e, key) => {
     const newForm = {
@@ -15,20 +15,11 @@ function App() {
     }
    setFormData(newForm)
   }
-  const handleOnBlur = (e,key) => {
-    const valid = {
-      ...formValid,
-      [key]: e.target.value,
-    }
-    if( valid === null ){
-     alert("This field is required");
-    }
-    else{
-      setFormValid(true)
+  const handleOnBlur = e => {
+    if(formData.name === ''){
+      alert(e.target.name + " is required")
     }
   }
-  
-
   return (
     <div className="App">
       <Input
@@ -36,7 +27,7 @@ function App() {
         type= "text"
         placeholder="Please Enter Your Name"
         onChange={(e)=> handleOnChange(e, "name")}
-        onBlur={(e)=> handleOnBlur(e, "name")}
+        onBlur={handleOnBlur}
         value={formData.name}
       />
     <h5>Name: {formData.name}</h5>

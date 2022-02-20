@@ -16,7 +16,7 @@ function App() {
 
   const handleOnBlur = e => {
     if(formData.note === ''){
-      alert(e.target.note + " is required")
+      alert("This field is required")
     }
   }
   

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from 'styled-components';
 import TextArea from "./TextArea";
 import Input from "./Input";
 
@@ -45,7 +46,8 @@ const Form = (props) => {
   //   }
   // }
   return (
-    <div className="App">
+    <form onSubmit>
+    <div>
       <Input
         name="name"
         placeholder="Please enter Your name"
@@ -73,6 +75,8 @@ const Form = (props) => {
       />
       <h5>Note: {formData.note}</h5>
     </div>
+    <button type="submit" />
+    </form>
   );
 };
 export default Form;

@@ -6,8 +6,6 @@ function App() {
   return (
     <div className="App">
       <Form />
-      {empty.key && <p>This field is required</p>}
-
     </div>
   );
 }

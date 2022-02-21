@@ -24,32 +24,19 @@ const Form = (props) => {
   };
 
   const handleOnBlur = (value, key) => {
-        if(value === ""){
-          empty.key = true;
-          console.log(empty.key + key )
-
+    setFormEmpty((previousState) => {
+      return {
+        ...previousState,
+        [key]: value === "",
       };
-    
+    });
+    //console.log(empty);
   };
 
-  // const handleOnBlurName = e => {
-  //   if(formData.name === ''){
-  //     alert("This field is required")
-  //   }
-  // }
-  // const handleOnBlurDate = e => {
-  //   if(formData.name === ''){
-  //     alert("This field is required")
-  //   }
-  // }
-  // const handleOnBlurNote = (e,key) => {
-  //   if(formData.name === ''){
-  //     alert("This field is required")
-  //   }
-  // }
   return (
     <form onSubmit>
     <div>
+    {empty.name && <p>This field is required</p>}
       <Input
         name="name"
         placeholder="Please enter Your name"
@@ -58,7 +45,7 @@ const Form = (props) => {
         value={formData.name}
       />
       <h5>Name: {formData.name}</h5>
-
+      {empty.date && <p>This field is required</p>}
       <Input
         name="date"
         placeholder="Please enter the date"
@@ -67,7 +54,7 @@ const Form = (props) => {
         value={formData.date}
       />
       <h5>Date: {formData.date}</h5>
-
+      {empty.note && <p>This field is required</p>}
       <TextArea
         name="note"
         placeholder="Please enter Your Note"

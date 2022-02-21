@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from 'styled-components';
 import TextArea from "./TextArea";
 import Input from "./Input";
 
@@ -24,10 +23,13 @@ const Form = (props) => {
     setFormData(newForm);
   };
 
-  const handleOnBlur = (e, key) => {
-    empty.map((data) => {
-      return <h2>key.data</h2>;
-    });
+  const handleOnBlur = (value, key) => {
+        if(value === ""){
+          empty.key = true;
+          console.log(empty.key + key )
+
+      };
+    
   };
 
   // const handleOnBlurName = e => {
@@ -68,7 +70,7 @@ const Form = (props) => {
 
       <TextArea
         name="note"
-        placeholder="Please Enter Your Note"
+        placeholder="Please enter Your Note"
         onChange={(e) => handleOnChange(e, "note")}
         onBlur={(e) => handleOnBlur(e.target.value, "note")}
         value={formData.note}

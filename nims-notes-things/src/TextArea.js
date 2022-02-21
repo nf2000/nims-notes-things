@@ -5,6 +5,13 @@ const TextArea = (props) => {
 
   return (
     <textarea
+      style = {
+        {
+          width: '200px',
+          height: '100px',
+          borderColor: "CornflowerBlue"
+         }
+      }
       name={name}
       value={value}
       onChange={onChange}

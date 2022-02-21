@@ -1,9 +1,8 @@
+import React, { useState } from 'react';
 import './App.css';
 import TextArea from './TextArea';
-import React, { useState } from 'react';
 
 function App() {
-
   const [formData, setFormData] = useState({note: ''});
 
   const handleOnChange = (e, key) => {
@@ -14,7 +13,7 @@ function App() {
    setFormData(newForm)
   }
 
-  const handleOnBlur = e => {
+  const handleOnBlur = (e) => {
     if(formData.note === ''){
       alert("This field is required")
     }

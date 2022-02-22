@@ -20,5 +20,7 @@ const TextAreaStyle = styled.input`
   height: 100px;
   border-color: #483d8b;
   border-radius: 0.5em;
+  font-size: 15px;
+  text-align: center;
 `;
 export default TextArea;

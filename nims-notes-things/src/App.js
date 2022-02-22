@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import TextArea from "./TextArea";
+import Form from "./Form";
 
 function App() {
   const [formData, setFormData] = useState({ note: "" });
@@ -21,14 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      <TextArea
-        name="name"
-        placeholder="Please Enter Your Note"
-        onChange={(e) => handleOnChange(e, "note")}
-        onBlur={handleOnBlur}
-        value={formData.note}
-      />
-      <h5>Note: {formData.note}</h5>
+      <Form />
     </div>
   );
 }

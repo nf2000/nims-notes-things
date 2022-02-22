@@ -37,9 +37,7 @@ const Form = (props) => {
     <form>
       <div>
         <InnerForm>
-          <ErrorMessage>
-            {empty.name && <p>Name field is required</p>}
-          </ErrorMessage>
+          {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}
           <Input
             name="name"
             placeholder="Please enter Your name"
@@ -48,7 +46,7 @@ const Form = (props) => {
             value={formData.name}
           />
           <ErrorMessage>
-            {empty.date && <p>Date field is required</p>}
+            {empty.date && <ErrorMessage>Date field is required</ErrorMessage>}
           </ErrorMessage>
 
           <Input
@@ -60,7 +58,7 @@ const Form = (props) => {
             value={formData.date}
           />
           <ErrorMessage>
-            {empty.note && <p>Note field is required</p>}
+            {empty.note && <ErrorMessage>Note field is required</ErrorMessage>}
           </ErrorMessage>
 
           <TextArea

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
 
+
 const Form = (props) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -31,7 +32,7 @@ const Form = (props) => {
   };
   
   return (
-    <form onSubmit>
+    <form >
       <div>
         <InnerForm>
           <div className="inputField">

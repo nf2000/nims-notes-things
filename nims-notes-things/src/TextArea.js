@@ -1,17 +1,11 @@
 import React from "react";
+import styled from "styled-components";
 
 const TextArea = (props) => {
   const { name, value, placeholder, onChange, onBlur } = props;
 
   return (
-    <textarea
-      style = {
-        {
-          width: '200px',
-          height: '100px',
-          borderColor: "CornflowerBlue"
-         }
-      }
+    <TextAreaStyle
       name={name}
       value={value}
       onChange={onChange}
@@ -20,4 +14,10 @@ const TextArea = (props) => {
     />
   );
 };
+
+const TextAreaStyle = styled.input`
+  width: 200px;
+  height: 100px;
+  border-color: #483D8B;
+`;
 export default TextArea;

@@ -21,6 +21,7 @@ const InputStyle = styled.input`
   height: 50px;
   background-color: #f8f8ff;
   border-color: #483d8b;
+  border-radius: 0.5em;
 `;
 
 export default Input;

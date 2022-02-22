@@ -29,22 +29,7 @@ const Form = (props) => {
       return <h2>key.data</h2>;
     });
   };
-
-  // const handleOnBlurName = e => {
-  //   if(formData.name === ''){
-  //     alert("This field is required")
-  //   }
-  // }
-  // const handleOnBlurDate = e => {
-  //   if(formData.name === ''){
-  //     alert("This field is required")
-  //   }
-  // }
-  // const handleOnBlurNote = (e,key) => {
-  //   if(formData.name === ''){
-  //     alert("This field is required")
-  //   }
-  // }
+  
   return (
     <form onSubmit>
       <div>
@@ -71,16 +56,14 @@ const Form = (props) => {
 
           <TextArea
             name="note"
-            placeholder="Please Enter Your Note"
+            placeholder="Please enter Your Note"
             onChange={(e) => handleOnChange(e, "note")}
             onBlur={(e) => handleOnBlur(e.target.value, "note")}
             value={formData.note}
           />
           <h5>Note: {formData.note}</h5>
 
-          <Button  type="submit"> 
-          submit
-          </Button>
+          <Button type="submit">submit</Button>
         </InnerForm>
       </div>
     </form>
@@ -95,6 +78,7 @@ const InnerForm = styled.div`
   padding: 20px;
   position: relative;
   margin: 20px;
+  backgroundColor: pink;
 `;
 const Button = styled.button`
   background: transparent;

@@ -18,6 +18,6 @@ const TextArea = (props) => {
 const TextAreaStyle = styled.input`
   width: 200px;
   height: 100px;
-  border-color: #483D8B;
+  border-color: #483d8b;
 `;
 export default TextArea;

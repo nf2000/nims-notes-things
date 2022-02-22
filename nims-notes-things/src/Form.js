@@ -33,7 +33,7 @@ const Form = (props) => {
   };
 
   return (
-    <form >
+    <form>
       <div>
         {empty.name && <p>This field is required</p>}
         <Input

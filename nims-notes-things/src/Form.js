@@ -36,8 +36,11 @@ const Form = (props) => {
   return (
     <form>
       <div>
-        {empty.name && <p>This field is required</p>}
         <InnerForm>
+          <ErrorMessage>
+            {empty.name && <p>Name field is required</p>}
+          </ErrorMessage>
+
           <Input
             name="name"
             placeholder="Please enter Your name"
@@ -46,16 +49,25 @@ const Form = (props) => {
             value={formData.name}
           />
           <h5>Name: {formData.name}</h5>
-          {empty.date && <p>This field is required</p>}
+
+          <ErrorMessage>
+            {empty.date && <p>Date field is required</p>}
+          </ErrorMessage>
+
           <Input
             name="date"
+            type="date"
             placeholder="Please enter the date"
             onChange={(e) => handleOnChange(e, "date")}
             onBlur={(e) => handleOnBlur(e.target.value, "date")}
             value={formData.date}
           />
           <h5>Date: {formData.date}</h5>
-          {empty.note && <p>This field is required</p>}
+
+          <ErrorMessage>
+            {empty.note && <p>Note field is required</p>}
+          </ErrorMessage>
+
           <TextArea
             name="note"
             placeholder="Please enter Your Note"
@@ -76,9 +88,9 @@ const InnerForm = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 5px;
   position: relative;
-  margin: 20px;
+  margin: 5px;
 `;
 
 const Button = styled.button`
@@ -88,4 +100,8 @@ const Button = styled.button`
   color: palevioletred;
   margin: 0.5em 1em;
   padding: 0.25em 1em;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
 `;

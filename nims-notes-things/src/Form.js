@@ -40,7 +40,6 @@ const Form = (props) => {
           <ErrorMessage>
             {empty.name && <p>Name field is required</p>}
           </ErrorMessage>
-
           <Input
             name="name"
             placeholder="Please enter Your name"
@@ -48,8 +47,6 @@ const Form = (props) => {
             onBlur={(e) => handleOnBlur(e.target.value, "name")}
             value={formData.name}
           />
-          <h5>Name: {formData.name}</h5>
-
           <ErrorMessage>
             {empty.date && <p>Date field is required</p>}
           </ErrorMessage>
@@ -62,8 +59,6 @@ const Form = (props) => {
             onBlur={(e) => handleOnBlur(e.target.value, "date")}
             value={formData.date}
           />
-          <h5>Date: {formData.date}</h5>
-
           <ErrorMessage>
             {empty.note && <p>Note field is required</p>}
           </ErrorMessage>
@@ -75,7 +70,6 @@ const Form = (props) => {
             onBlur={(e) => handleOnBlur(e.target.value, "note")}
             value={formData.note}
           />
-          <h5>Note: {formData.note}</h5>
         </InnerForm>
       </div>
       <Button type="submit">submit</Button>
@@ -91,6 +85,7 @@ const InnerForm = styled.div`
   padding: 5px;
   position: relative;
   margin: 5px;
+  background-color: white;
 `;
 
 const Button = styled.button`

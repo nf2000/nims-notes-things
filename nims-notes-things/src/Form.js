@@ -24,6 +24,32 @@ const Form = (props) => {
     };
     setFormData(newForm);
   };
+  const handleOnSubmit = () => {
+    validateSubmit()
+
+    if (empty.name === "" || empty.note === "" || empty.date === ""){
+      console.log(empty);
+        alert("please fill in the form");
+    }
+  };
+
+  const validateSubmit = (event) =>{
+    event.preventDefault();
+    setFormEmpty({name: true, date: true, note: true});
+    empty.name = true;
+    console.log(empty.name + empty.date + "name");
+
+    alert("hello");
+  
+    if (formData.name !== ""){
+      empty.name = false;
+    //   console.log(empty + "name");
+    }
+    else{
+      empty.name = true;
+      return true
+   }
+  }
 
   const handleOnBlur = (value, key) => {
     setFormEmpty((previousState) => {
@@ -32,10 +58,11 @@ const Form = (props) => {
         [key]: value === "",
       };
     });
+    console.log(empty);
   };
 
   return (
-    <form>
+    <form onSubmit={handleOnSubmit}>
       <div>
         <InnerForm>
           {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}
@@ -71,7 +98,7 @@ const Form = (props) => {
           />
         </InnerForm>
       </div>
-      <Button background="red" type="submit">
+      <Button background="red" disabled type="submit">
         submit
       </Button>
     </form>

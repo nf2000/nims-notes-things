@@ -2,7 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  return <ButtonStyle {...props}>{props.children}</ButtonStyle>;
+  return (
+    <ButtonStyle background={props.background} {...props}>
+      {props.children}
+    </ButtonStyle>
+  );
 };
 
 const ButtonStyle = styled.button`

@@ -2,11 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Header = (props) => {
-  return (
-    <HeaderStyle background={props.background} {...props}>
-      {props.children}
-    </HeaderStyle>
-  );
+  return <HeaderStyle {...props}>{props.children}</HeaderStyle>;
 };
 
 const HeaderStyle = styled.div`

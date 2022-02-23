@@ -66,7 +66,7 @@ const Form = (props) => {
         </InnerForm>
       </StyledDiv>
       <Button background="red" type="submit">
-        submit
+        Submit
       </Button>
     </StyledForm>
   );

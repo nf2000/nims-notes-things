@@ -1,29 +1,14 @@
 import React from "react";
 import "./App.css";
 import Form from "./Form";
+import Header from "./Header";
 
 function App() {
-  const [formData, setFormData] = useState({ note: "" });
-
-  const handleOnChange = (e, key) => {
-    const newForm = {
-      ...formData,
-      [key]: e.target.value,
-    };
-    setFormData(newForm);
-  };
-
-  const handleOnBlur = (e) => {
-    if (formData.note === "") {
-      alert("This field is required");
-    }
-  };
-
   return (
     <div className="App">
+      <Header>Nims Notes Things</Header>
       <Form />
     </div>
   );
-}
-
+} 
 export default App;

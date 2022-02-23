@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
+import Button from "./Button";
 
 const Form = (props) => {
   const [formData, setFormData] = useState({
@@ -33,38 +35,58 @@ const Form = (props) => {
   };
 
   return (
-    <form>
-      <div>
-        {empty.name && <p>This field is required</p>}
-        <Input
-          name="name"
-          placeholder="Please enter Your name"
-          onChange={(e) => handleOnChange(e, "name")}
-          onBlur={(e) => handleOnBlur(e.target.value, "name")}
-          value={formData.name}
-        />
-        <h5>Name: {formData.name}</h5>
-        {empty.date && <p>This field is required</p>}
-        <Input
-          name="date"
-          placeholder="Please enter the date"
-          onChange={(e) => handleOnChange(e, "date")}
-          onBlur={(e) => handleOnBlur(e.target.value, "date")}
-          value={formData.date}
-        />
-        <h5>Date: {formData.date}</h5>
-        {empty.note && <p>This field is required</p>}
-        <TextArea
-          name="note"
-          placeholder="Please enter Your Note"
-          onChange={(e) => handleOnChange(e, "note")}
-          onBlur={(e) => handleOnBlur(e.target.value, "note")}
-          value={formData.note}
-        />
-        <h5>Note: {formData.note}</h5>
-      </div>
-      <button type="submit" />
-    </form>
+    <StyledForm>
+      <StyledDiv>
+        <InnerForm>
+          {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}
+          <Input
+            name="name"
+            placeholder="Please enter Your name"
+            onChange={(e) => handleOnChange(e, "name")}
+            onBlur={(e) => handleOnBlur(e.target.value, "name")}
+            value={formData.name}
+          />
+          {empty.date && <ErrorMessage>Date field is required</ErrorMessage>}
+          <Input
+            name="date"
+            type="date"
+            placeholder="Please enter the date"
+            onChange={(e) => handleOnChange(e, "date")}
+            onBlur={(e) => handleOnBlur(e.target.value, "date")}
+            value={formData.date}
+          />
+          {empty.note && <ErrorMessage>Note field is required</ErrorMessage>}
+          <TextArea
+            name="note"
+            placeholder="Please enter Your Note"
+            onChange={(e) => handleOnChange(e, "note")}
+            onBlur={(e) => handleOnBlur(e.target.value, "note")}
+            value={formData.note}
+          />
+        </InnerForm>
+      </StyledDiv>
+      <Button background="red" type="submit">
+        Submit
+      </Button>
+    </StyledForm>
   );
 };
 export default Form;
+
+const StyledForm = styled.form``;
+
+const StyledDiv = styled.div``;
+
+const InnerForm = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+  position: relative;
+  margin: 5px;
+  background-color: white;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+`;

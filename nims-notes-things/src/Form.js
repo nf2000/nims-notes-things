@@ -35,8 +35,8 @@ const Form = (props) => {
   };
 
   return (
-    <form>
-      <div>
+    <StyledForm>
+      <StyledDiv>
         <InnerForm>
           {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}
           <Input
@@ -47,7 +47,6 @@ const Form = (props) => {
             value={formData.name}
           />
           {empty.date && <ErrorMessage>Date field is required</ErrorMessage>}
-
           <Input
             name="date"
             type="date"
@@ -57,7 +56,6 @@ const Form = (props) => {
             value={formData.date}
           />
           {empty.note && <ErrorMessage>Note field is required</ErrorMessage>}
-
           <TextArea
             name="note"
             placeholder="Please enter Your Note"
@@ -66,14 +64,18 @@ const Form = (props) => {
             value={formData.note}
           />
         </InnerForm>
-      </div>
+      </StyledDiv>
       <Button background="red" type="submit">
         submit
       </Button>
-    </form>
+    </StyledForm>
   );
 };
 export default Form;
+
+const StyledForm = styled.form``;
+
+const StyledDiv = styled.div``;
 
 const InnerForm = styled.div`
   display: flex;
@@ -84,15 +86,6 @@ const InnerForm = styled.div`
   margin: 5px;
   background-color: white;
 `;
-
-// const Button = styled.button`
-//   background: transparent;
-//   border-radius: 3px;
-//   border: 2px solid palevioletred;
-//   color: palevioletred;
-//   margin: 0.5em 1em;
-//   padding: 0.25em 1em;
-// `;
 
 const ErrorMessage = styled.p`
   color: red;

@@ -24,32 +24,15 @@ const Form = (props) => {
     };
     setFormData(newForm);
   };
-  const handleOnSubmit = () => {
-    validateSubmit()
-
-    if (empty.name === "" || empty.note === "" || empty.date === ""){
-      console.log(empty);
-        alert("please fill in the form");
-    }
+  const handleOnSubmit = (event) => {
+    validateSubmit(event);
   };
 
-  const validateSubmit = (event) =>{
-    event.preventDefault();
-    setFormEmpty({name: true, date: true, note: true});
-    empty.name = true;
-    console.log(empty.name + empty.date + "name");
-
-    alert("hello");
-  
-    if (formData.name !== ""){
-      empty.name = false;
-    //   console.log(empty + "name");
+  const validateSubmit = (event) => {
+    if (formData.name === "" || formData.date === "" || formData.note === "") {
+      event.preventDefault();
     }
-    else{
-      empty.name = true;
-      return true
-   }
-  }
+  };
 
   const handleOnBlur = (value, key) => {
     setFormEmpty((previousState) => {
@@ -98,7 +81,7 @@ const Form = (props) => {
           />
         </InnerForm>
       </div>
-      <Button background="red" disabled type="submit">
+      <Button background="red" type="submit">
         submit
       </Button>
     </form>
@@ -115,15 +98,6 @@ const InnerForm = styled.div`
   margin: 5px;
   background-color: white;
 `;
-
-// const Button = styled.button`
-//   background: transparent;
-//   border-radius: 3px;
-//   border: 2px solid palevioletred;
-//   color: palevioletred;
-//   margin: 0.5em 1em;
-//   padding: 0.25em 1em;
-// `;
 
 const ErrorMessage = styled.p`
   color: red;

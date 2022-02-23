@@ -71,7 +71,9 @@ const Form = (props) => {
           />
         </InnerForm>
       </div>
-      <Button background="red" type="submit">submit</Button>
+      <Button background="red" type="submit">
+        submit
+      </Button>
     </form>
   );
 };

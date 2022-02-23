@@ -46,9 +46,7 @@ const Form = (props) => {
             onBlur={(e) => handleOnBlur(e.target.value, "name")}
             value={formData.name}
           />
-          <ErrorMessage>
-            {empty.date && <ErrorMessage>Date field is required</ErrorMessage>}
-          </ErrorMessage>
+          {empty.date && <ErrorMessage>Date field is required</ErrorMessage>}
 
           <Input
             name="date"
@@ -58,9 +56,7 @@ const Form = (props) => {
             onBlur={(e) => handleOnBlur(e.target.value, "date")}
             value={formData.date}
           />
-          <ErrorMessage>
-            {empty.note && <ErrorMessage>Note field is required</ErrorMessage>}
-          </ErrorMessage>
+          {empty.note && <ErrorMessage>Note field is required</ErrorMessage>}
 
           <TextArea
             name="note"

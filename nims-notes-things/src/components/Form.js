@@ -63,8 +63,8 @@ const Form = (props) => {
   };
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <div>
+    <StyledForm>
+      <StyledDiv>
         <InnerForm>
           {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}
           <Input
@@ -74,10 +74,7 @@ const Form = (props) => {
             onBlur={(e) => handleOnBlur(e.target.value, "name")}
             value={formData.name}
           />
-          <ErrorMessage>
-            {empty.date && <ErrorMessage>Date field is required</ErrorMessage>}
-          </ErrorMessage>
-
+          {empty.date && <ErrorMessage>Date field is required</ErrorMessage>}
           <Input
             name="date"
             type="date"
@@ -86,10 +83,7 @@ const Form = (props) => {
             onBlur={(e) => handleOnBlur(e.target.value, "date")}
             value={formData.date}
           />
-          <ErrorMessage>
-            {empty.note && <ErrorMessage>Note field is required</ErrorMessage>}
-          </ErrorMessage>
-
+          {empty.note && <ErrorMessage>Note field is required</ErrorMessage>}
           <TextArea
             name="note"
             placeholder="Please enter Your Note"
@@ -98,14 +92,18 @@ const Form = (props) => {
             value={formData.note}
           />
         </InnerForm>
-      </div>
+      </StyledDiv>
       <Button background="red" type="submit">
-        submit
+        Submit
       </Button>
-    </form>
+    </StyledForm>
   );
 };
 export default Form;
+
+const StyledForm = styled.form``;
+
+const StyledDiv = styled.div``;
 
 const InnerForm = styled.div`
   display: flex;

@@ -1,17 +1,14 @@
-import React from 'react';
-// import pencil from './penLogo.png';
+import React from "react";
 import "./App.css";
-import Form from "./Form";
+import Form from "./components/Form";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <div className="App-header">
-      <h1> Nims Notes Things </h1>
-      </div>
+      <Header>Nims Notes Things</Header>
       <Form />
     </div>
   );
-}
-
+} 
 export default App;

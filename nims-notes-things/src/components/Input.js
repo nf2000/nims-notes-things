@@ -24,6 +24,7 @@ const InputStyle = styled.input`
   border-radius: 0.5em;
   font-size: 15px;
   text-align: center;
+  margin: 20px;
 `;
 
 export default Input;

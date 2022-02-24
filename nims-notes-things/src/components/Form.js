@@ -26,19 +26,17 @@ const Form = (props) => {
     setFormData(newForm);
   };
 
-  const validateSubmit = (event) => {
+  const validateSubmit = () => {
     let isValidated = true;
-    Object.keys(formData).forEach((data) => {
-      if (formData[data] === "") {
+    Object.keys(formData).forEach((key) => {
+      if (formData[key] === "") {
         setFormEmpty((previousState) => {
           return {
             ...previousState,
-            [data]: true,
+            [key]: true,
           };
         });
-        return (isValidated = false);
-      } else {
-        return (isValidated = true);
+        return isValidated = false;
       }
     });
     return isValidated;
@@ -46,7 +44,7 @@ const Form = (props) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    const isValidated = validateSubmit(event);
+    const isValidated = validateSubmit();
 
     if (isValidated) {
       alert("form is validated");

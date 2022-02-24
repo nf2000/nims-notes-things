@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
 import Button from "./Button";
+import { v4 as uuidv4 } from "uuid";
 
 const Form = (props) => {
   const [formData, setFormData] = useState({
@@ -24,13 +25,31 @@ const Form = (props) => {
     };
     setFormData(newForm);
   };
-  const handleOnSubmit = (event) => {
-    validateSubmit(event);
-  };
 
   const validateSubmit = (event) => {
-    if (formData.name === "" || formData.date === "" || formData.note === "") {
-      event.preventDefault();
+    let isValidated = true;
+    Object.keys(formData).forEach((data) => {
+      if (formData[data] === "") {
+        setFormEmpty((previousState) => {
+          return {
+            ...previousState,
+            [data]: true,
+          };
+        });
+        return (isValidated = false);
+      } else {
+        return (isValidated = true);
+      }
+    });
+    return isValidated;
+  };
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    const isValidated = validateSubmit(event);
+
+    if (isValidated) {
+      alert("form is validated");
     }
   };
 

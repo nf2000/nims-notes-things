@@ -6,7 +6,7 @@ const Button = (props) => {
 };
 
 const ButtonStyle = styled.button`
-  border-radius: 5000px;
+  border-radius: 200px;
   border: 2px solid palevioletred;
   background: ${(props) => props.background};
   disabled: ${(props) => props.disabled};

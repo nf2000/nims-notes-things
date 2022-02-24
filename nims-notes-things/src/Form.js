@@ -60,7 +60,6 @@ const Form = (props) => {
         [key]: value === "",
       };
     });
-    console.log(empty);
   };
 
   return (

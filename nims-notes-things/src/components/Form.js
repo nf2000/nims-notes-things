@@ -63,7 +63,7 @@ const Form = (props) => {
   };
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleOnSubmit}>
       <StyledDiv>
         <InnerForm>
           {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}

@@ -3,7 +3,10 @@ import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
 import Button from "./Button";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setNote } from "../redux/actions/noteActions";
 
 const Form = (props) => {
   const [formData, setFormData] = useState({
@@ -18,6 +21,13 @@ const Form = (props) => {
     note: false,
   });
 
+  const dispatch = useDispatch();
+
+  const notes = useSelector((state) => {
+    console.log(state)
+    return state.noteReducer.value;
+  })
+  console.log(notes);
   const handleOnChange = (e, key) => {
     const newForm = {
       ...formData,
@@ -26,7 +36,7 @@ const Form = (props) => {
     setFormData(newForm);
   };
 
-  const validateSubmit = (event) => {
+  const validateSubmit = () => {
     let isValidated = true;
     Object.keys(formData).forEach((data) => {
       if (formData[data] === "") {
@@ -46,10 +56,17 @@ const Form = (props) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    const isValidated = validateSubmit(event);
-
+    const isValidated = validateSubmit();
     if (isValidated) {
-      alert("form is validated");
+      const formdatacopy = {...formData}
+      const notesCopy = [...notes];
+      //console.log(formdatacopy);
+      //console.log(notesCopy);
+      console.log(notesCopy);
+
+      notesCopy.push(formdatacopy);
+      dispatch(setNote(notesCopy)
+      );
     }
   };
 

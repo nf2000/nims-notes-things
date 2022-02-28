@@ -53,5 +53,6 @@ const Header = styled.div`
 const Content = styled.div`
   text-align: left;
   font-size: 17px;
+  font-family: "Lucida Console", "Courier New", monospace;
   }
 `;

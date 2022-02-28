@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
 import Button from "./Button";
+import { v4 as uuidv4 } from "uuid";
 
 const Form = (props) => {
   const [formData, setFormData] = useState({
@@ -25,6 +26,31 @@ const Form = (props) => {
     setFormData(newForm);
   };
 
+  const validateSubmit = () => {
+    let isValidated = true;
+    Object.keys(formData).forEach((key) => {
+      if (formData[key] === "") {
+        setFormEmpty((previousState) => {
+          return {
+            ...previousState,
+            [key]: true,
+          };
+        });
+        return isValidated = false;
+      }
+    });
+    return isValidated;
+  };
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    const isValidated = validateSubmit();
+
+    if (isValidated) {
+      alert("form is validated");
+    }
+  };
+
   const handleOnBlur = (value, key) => {
     setFormEmpty((previousState) => {
       return {
@@ -35,7 +61,7 @@ const Form = (props) => {
   };
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleOnSubmit}>
       <StyledDiv>
         <InnerForm>
           {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}

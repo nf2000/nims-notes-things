@@ -10,9 +10,10 @@ const Button = (props) => {
 };
 
 const ButtonStyle = styled.button`
-  border-radius: 5000px;
+  border-radius: 200px;
   border: 2px solid palevioletred;
   background: ${(props) => props.background};
+  disabled: ${(props) => props.disabled};
   margin: 0.5em 1em;
   padding: 0.25em 1em;
 `;

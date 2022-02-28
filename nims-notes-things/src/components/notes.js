@@ -8,20 +8,19 @@ function Notes() {
   });
 
   return (
-      <div>
-        {notes.map((n) => {
-          return (
-            <div>
+    <div>
+      {notes.map((n) => {
+        return (
+          <div>
             <Note>
               <pa>{n.name}</pa>
               <p>{n.date}</p>
               <p>{n.note}</p>
-              </Note>
+            </Note>
           </div>
-          );
-        })}
-
-      </div>
+        );
+      })}
+    </div>
   );
 }
 export default Notes;
@@ -36,17 +35,3 @@ const Note = styled.div`
   float: left;
   }
 `;
-
-const Name = styled.div`
-  display: grid;
-  flex-wrap: wrap;
-  background-color: #e7f3fe;
-  width: 200px;
-  margin: 10px;
-  padding: 20px;
-  float: left;
-  }
-`;
-
-
-

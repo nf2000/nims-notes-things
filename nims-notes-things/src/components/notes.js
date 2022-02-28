@@ -13,7 +13,7 @@ function Notes() {
         return (
           <div>
             <Note>
-              <pa>{n.name}</pa>
+              <p>{n.name}</p>
               <p>{n.date}</p>
               <p>{n.note}</p>
             </Note>

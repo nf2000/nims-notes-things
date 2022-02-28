@@ -12,10 +12,9 @@ function App() {
       <div className="App">
         <Header>Nims Notes Things</Header>
         <Form />
-        <Notes/>
+        <Notes />
       </div>
     </Provider>
   );
 }
 export default App;
-

@@ -35,17 +35,15 @@ const Form = (props) => {
 
   const validateSubmit = () => {
     let isValidated = true;
-    Object.keys(formData).forEach((data) => {
-      if (formData[data] === "") {
+    Object.keys(formData).forEach((key) => {
+      if (formData[key] === "") {
         setFormEmpty((previousState) => {
           return {
             ...previousState,
-            [data]: true,
+            [key]: true,
           };
         });
         return (isValidated = false);
-      } else {
-        return (isValidated = true);
       }
     });
     return isValidated;

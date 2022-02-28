@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Pin from "../pin.jpeg";
-import Board from "../corkboard.jpeg";
 
 function Notes() {
   const notes = useSelector((state) => {
@@ -17,8 +16,8 @@ function Notes() {
             <Note>
               <img src={Pin} height={20} alt="" />
               <Header>
-                <Name>{n.name}</Name>
-                <Date>{n.date}</Date>
+                <p>{n.name}</p>
+                <p>{n.date}</p>
               </Header>
               <Content>{n.note}</Content>
             </Note>
@@ -41,10 +40,6 @@ const Note = styled.div`
   }
 `;
 
-const BoardBack = styled.div`
-background: url("../corkboard.jpeg");
-`;
-
 const Header = styled.div`
   display: flex;
   flex: 1;
@@ -52,16 +47,6 @@ const Header = styled.div`
   justify-content: space-between;
   margin-bottom: 10px;
   font-weight: bold;
-  }
-`;
-
-const Date = styled.div`
-
-  }
-`;
-
-const Name = styled.div`
-
   }
 `;
 

@@ -20,12 +20,14 @@ const Form = (props) => {
     note: false,
   });
 
+  const [sortType, setSorted] = useState({ asc: "", desc: ""})
+
   const dispatch = useDispatch();
 
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
-  
+
   const handleOnChange = (e, key) => {
     const newForm = {
       ...formData,
@@ -74,9 +76,28 @@ const Form = (props) => {
     });
   };
 
+  const sorted = notes.sort((a,b) => {
+    const dateA = (`${a.date}`.valueOf());
+    const dateB = (`${b.date}`).valueOf();
+    if(dateA > dateB){
+      console.log("dateA" + dateA + " Date B " + dateB);
+      return 1; // return -1 here for DESC order
+    }
+    return -1 // return 1 here for DESC Order
+  });
+  const myData = [].concat(this.state.data)
+    .sort((a, b) => a.itemM > b.itemM ? 1 : -1)
+    .map((item, i) => 
+        <div key={i}> {item.matchID} {item.timeM}{item.description}</div>
+    );
+  
+
+  console.log("THIS IS SORT" + sorted)
+
   return (
     <StyledForm onSubmit={handleOnSubmit}>
       <StyledDiv>
+
         <InnerForm>
           {notes.length === 0 ? <p> Please Enter your Note</p> : null}
           {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}
@@ -108,6 +129,9 @@ const Form = (props) => {
       </StyledDiv>
       <Button background="blue" type="submit">
         Submit
+      </Button>
+      <Button background="blue" onClick={sorted}>
+        Sort
       </Button>
     </StyledForm>
   );

@@ -10,8 +10,7 @@ function Notes() {
 
   return (
     <div>
-      {notes.map((n, index) => {
-        console.log(index);
+      {notes.map((note, index) => {
         return (
           <div>
             <Note>
@@ -20,10 +19,10 @@ function Notes() {
               </PinImage>
               <NoteNumber> {index + 1}</NoteNumber>
               <Header>
-                <p>{n.name}</p>
-                <p>{n.date}</p>
+                <p>{note.name}</p>
+                <p>{note.date}</p>
               </Header>
-              <Content>{n.note}</Content>
+              <Content>{note.note}</Content>
             </Note>
           </div>
         );

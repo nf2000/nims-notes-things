@@ -25,6 +25,7 @@ const Form = (props) => {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
+  
   const handleOnChange = (e, key) => {
     const newForm = {
       ...formData,

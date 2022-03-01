@@ -12,6 +12,7 @@ const Form = (props) => {
     name: "",
     date: "",
     note: "",
+    valid: false,
   });
 
   const [empty, setFormEmpty] = useState({
@@ -25,7 +26,7 @@ const Form = (props) => {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
-  
+
   const handleOnChange = (e, key) => {
     const newForm = {
       ...formData,
@@ -35,18 +36,20 @@ const Form = (props) => {
   };
 
   const validateSubmit = () => {
-    let isValidated = true;
+    let isValidated = false;
     Object.keys(formData).forEach((key) => {
-      if (formData[key] === "") {
-        setFormEmpty((previousState) => {
+      if (formData[key].length >= 1) {
+        setFormData((previousState) => {
           return {
             ...previousState,
-            [key]: true,
+            formData, valid: true, 
           };
+
         });
-        return (isValidated = false);
+        return isValidated = true;
       }
     });
+    console.log(formData.valid);
     return isValidated;
   };
 
@@ -70,6 +73,7 @@ const Form = (props) => {
       return {
         ...previousState,
         [key]: value === "",
+
       };
     });
   };

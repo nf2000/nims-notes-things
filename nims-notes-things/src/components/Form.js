@@ -60,8 +60,7 @@ const Form = (props) => {
       };
       const notesCopy = [...notes];
       notesCopy.push(formDataCopy);
-      dispatch(setNote(notesCopy))
-
+      dispatch(setNote(notesCopy));
     }
   };
 
@@ -76,14 +75,9 @@ const Form = (props) => {
 
   return (
     <StyledForm onSubmit={handleOnSubmit}>
-    
-
       <StyledDiv>
-
-
         <InnerForm>
-         {notes.length === 0 ? <p> no notes</p> : null }
-
+          {notes.length === 0 ? <p> Please Enter your Note</p> : null}
           {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}
           <Input
             name="name"

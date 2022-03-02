@@ -34,7 +34,7 @@ const Form = (props) => {
     Object.keys(formData).forEach((key) => {
       if (formData[key].length === 0) {
         handleOnBlur(key);
-        return isValidated = true;
+        return (isValidated = true);
       }
     });
     return isValidated;

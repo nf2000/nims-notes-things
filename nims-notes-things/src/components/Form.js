@@ -12,12 +12,7 @@ const Form = (props) => {
     name: "",
     date: "",
     note: "",
-  });
-
-  const [empty, setFormEmpty] = useState({
-    name: false,
-    date: false,
-    note: false,
+    valid: false,
   });
 
   const [sortType, setSorted] = useState({ asc: "", desc: ""})
@@ -37,16 +32,11 @@ const Form = (props) => {
   };
 
   const validateSubmit = () => {
-    let isValidated = true;
+    let isValidated = false;
     Object.keys(formData).forEach((key) => {
-      if (formData[key] === "") {
-        setFormEmpty((previousState) => {
-          return {
-            ...previousState,
-            [key]: true,
-          };
-        });
-        return (isValidated = false);
+      if (formData[key].length === 0) {
+        handleOnBlur(key);
+        return (isValidated = true);
       }
     });
     return isValidated;
@@ -55,25 +45,22 @@ const Form = (props) => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const isValidated = validateSubmit();
-    if (isValidated) {
+    if (!isValidated) {
       const uniqueId = uuidv4();
       const formDataCopy = {
         ...formData,
         id: uniqueId,
       };
-      const notesCopy = [...notes];
-      notesCopy.push(formDataCopy);
-      dispatch(setNote(notesCopy));
+      dispatch(setNote(formDataCopy));
     }
   };
 
-  const handleOnBlur = (value, key) => {
-    setFormEmpty((previousState) => {
-      return {
-        ...previousState,
-        [key]: value === "",
-      };
-    });
+  const handleOnBlur = (key) => {
+    if (formData[key] === "") {
+      document.getElementById(key).innerHTML = key + " required";
+    } else {
+      document.getElementById(key).innerHTML = "";
+    }
   };
 
   const sorted = notes.sort((a,b) => {
@@ -100,29 +87,29 @@ const Form = (props) => {
 
         <InnerForm>
           {notes.length === 0 ? <p> Please Enter your Note</p> : null}
-          {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}
+          {<ErrorMessage id="name"></ErrorMessage>}
           <Input
             name="name"
             placeholder="Please enter Your name"
             onChange={(e) => handleOnChange(e, "name")}
-            onBlur={(e) => handleOnBlur(e.target.value, "name")}
+            onBlur={(e) => handleOnBlur("name")}
             value={formData.name}
           />
-          {empty.date && <ErrorMessage>Date field is required</ErrorMessage>}
+          {<ErrorMessage id="date"> </ErrorMessage>}
           <Input
             name="date"
             type="date"
             placeholder="Please enter the date"
             onChange={(e) => handleOnChange(e, "date")}
-            onBlur={(e) => handleOnBlur(e.target.value, "date")}
+            onBlur={(e) => handleOnBlur("date")}
             value={formData.date}
           />
-          {empty.note && <ErrorMessage>Note field is required</ErrorMessage>}
+          {<ErrorMessage id="note"> </ErrorMessage>}
           <TextArea
             name="note"
             placeholder="Please enter Your Note"
             onChange={(e) => handleOnChange(e, "note")}
-            onBlur={(e) => handleOnBlur(e.target.value, "note")}
+            onBlur={(e) => handleOnBlur("note")}
             value={formData.note}
           />
         </InnerForm>

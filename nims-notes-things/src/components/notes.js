@@ -10,16 +10,17 @@ function Notes() {
 
   return (
     <div>
-      {notes.map((n) => {
+      {notes.map((note, index) => {
         return (
           <div>
             <Note>
-              <img src={Pin} height={20} alt="" />
+              <PinImage src={Pin} alt=""></PinImage>
+              <NoteNumber> {index + 1}</NoteNumber>
               <Header>
-                <p>{n.name}</p>
-                <p>{n.date}</p>
+                <p>{note.name}</p>
+                <p>{note.date}</p>
               </Header>
-              <Content>{n.note}</Content>
+              <Content>{note.note}</Content>
             </Note>
           </div>
         );
@@ -36,7 +37,7 @@ const Note = styled.div`
   margin: 10px;
   padding: 20px;
   float: left;
-  box-shadow:  0 0 5px blue;
+  box-shadow:  0 0 5px green;
   }
 `;
 
@@ -46,7 +47,6 @@ const Header = styled.div`
   font-style: italic;
   justify-content: space-between;
   margin-bottom: 10px;
-  font-weight: bold;
   }
 `;
 
@@ -56,3 +56,19 @@ const Content = styled.div`
   font-family: "Lucida Console", "Courier New", monospace;
   }
 `;
+
+const NoteNumber = styled.div`
+  position: relative;
+  right: 80px;
+  bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+const PinImage = styled.img`
+  position: relative;
+  left: 100px;
+  bottom: 10px;
+  height: 20px;
+`;
+

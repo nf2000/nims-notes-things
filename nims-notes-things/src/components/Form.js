@@ -30,21 +30,20 @@ const Form = (props) => {
   };
 
   const validateSubmit = () => {
-    let isValidated = true;
+    let isValidated = false;
     Object.keys(formData).forEach((key) => {
       if (formData[key].length === 0) {
         handleOnBlur(key);
-        return (isValidated = false);
+        return isValidated = true;
       }
     });
-    console.log(isValidated);
     return isValidated;
   };
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const isValidated = validateSubmit();
-    if (isValidated) {
+    if (!isValidated) {
       const uniqueId = uuidv4();
       const formDataCopy = {
         ...formData,

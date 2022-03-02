@@ -14,9 +14,7 @@ function Notes() {
         return (
           <div>
             <Note>
-              <PinImage>
-                <img src={Pin} height={20} alt="" />{" "}
-              </PinImage>
+              <PinImage src={Pin} height={20} alt=""></PinImage>
               <NoteNumber> {index + 1}</NoteNumber>
               <Header>
                 <p>{note.name}</p>
@@ -67,8 +65,9 @@ const NoteNumber = styled.div`
   font-weight: bold;
 `;
 
-const PinImage = styled.div`
+const PinImage = styled.img`
   position: relative;
   left: 100px;
   bottom: 10px;
+  height: 20px;
 `;

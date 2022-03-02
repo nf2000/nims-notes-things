@@ -8,7 +8,9 @@ export const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case actions.SET_NOTE:
-      return { ...state, value: action.value };
+      const notesArray =  [...state.value]
+      notesArray.push(action.value);
+      return { ...state, value: notesArray };
     default:
       return state;
   }

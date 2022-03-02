@@ -49,9 +49,7 @@ const Form = (props) => {
         ...formData,
         id: uniqueId,
       };
-      const notesCopy = [...notes];
-      notesCopy.push(formDataCopy);
-      dispatch(setNote(notesCopy));
+      dispatch(setNote(formDataCopy));
     }
   };
 

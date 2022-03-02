@@ -30,18 +30,14 @@ const Form = (props) => {
   };
 
   const validateSubmit = () => {
-    let isValidated = false;
+    let isValidated = true;
     Object.keys(formData).forEach((key) => {
-      if (formData[key].length >= 1) {
-        
-        return isValidated = true;
-      }
-      else{
+      if (formData[key].length === 0) {
         handleOnBlur(key);
-
+        return (isValidated = false);
       }
     });
-    console.log(formData.valid);
+    console.log(isValidated);
     return isValidated;
   };
 
@@ -61,8 +57,10 @@ const Form = (props) => {
   };
 
   const handleOnBlur = (key) => {
-    if (formData[key] === ""){
-      document.getElementById(key).innerHTML = key + " required"
+    if (formData[key] === "") {
+      document.getElementById(key).innerHTML = key + " required";
+    } else {
+      document.getElementById(key).innerHTML = "";
     }
   };
 
@@ -71,12 +69,12 @@ const Form = (props) => {
       <StyledDiv>
         <InnerForm>
           {notes.length === 0 ? <p> Please Enter your Note</p> : null}
-          { <ErrorMessage id="name" ></ErrorMessage>}
+          {<ErrorMessage id="name"></ErrorMessage>}
           <Input
             name="name"
             placeholder="Please enter Your name"
             onChange={(e) => handleOnChange(e, "name")}
-            onBlur={(e) => handleOnBlur( "name")}
+            onBlur={(e) => handleOnBlur("name")}
             value={formData.name}
           />
           {<ErrorMessage id="date"> </ErrorMessage>}
@@ -93,7 +91,7 @@ const Form = (props) => {
             name="note"
             placeholder="Please enter Your Note"
             onChange={(e) => handleOnChange(e, "note")}
-            onBlur={(e) => handleOnBlur( "note")}
+            onBlur={(e) => handleOnBlur("note")}
             value={formData.note}
           />
         </InnerForm>

@@ -12,17 +12,15 @@ function Notes() {
     <div>
       {notes.map((note, index) => {
         return (
-          <div>
-            <Note>
-              <PinImage src={Pin} height={20} alt=""></PinImage>
-              <NoteNumber> {index + 1}</NoteNumber>
-              <Header>
-                <p>{note.name}</p>
-                <p>{note.date}</p>
-              </Header>
-              <Content>{note.note}</Content>
-            </Note>
-          </div>
+          <Note key={note.id}>
+            <PinImage src={Pin} height={20} alt=""></PinImage>
+            <NoteNumber> {index + 1}</NoteNumber>
+            <Header>
+              <p>{note.name}</p>
+              <p>{note.date}</p>
+            </Header>
+            <Content>{note.note}</Content>
+          </Note>
         );
       })}
     </div>

@@ -71,4 +71,3 @@ const PinImage = styled.img`
   bottom: 10px;
   height: 20px;
 `;
-

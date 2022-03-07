@@ -29,7 +29,7 @@ function Notes() {
             height={20}
             alt="Picture not available"
           ></PinImage>
-          <NoteNumber> {index + 1}</NoteNumber>
+          <NoteNumber>{index + 1}</NoteNumber>
           <Header>
             <p>{note.name}</p>
             <p>{note.date}</p>
@@ -59,7 +59,7 @@ const Note = styled.div`
   margin: 10px;
   padding: 20px;
   float: left;
-  box-shadow:  0 0 5px green;
+  box-shadow: 0 0 5px green;
   }
 `;
 

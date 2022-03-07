@@ -65,7 +65,6 @@ const Form = (props) => {
     <StyledForm onSubmit={handleOnSubmit}>
       <StyledDiv>
         <InnerForm>
-          {notes.length === 0 && <p> Please Enter your Note</p>}
           <ErrorMessage
             id="name"
             ref={(element) => (emptyData.current["name"] = element)}
@@ -105,6 +104,7 @@ const Form = (props) => {
       <Button background="blue" type="submit" to="/notes">
         Submit
       </Button>
+      {notes.length === 0 && <p> There are no notes currently</p>}
     </StyledForm>
   );
 };

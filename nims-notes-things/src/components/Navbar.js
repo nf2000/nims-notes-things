@@ -21,6 +21,14 @@ const Navbar = () => {
             background: 'darkblue'
           }}
         >Notes</NavLink>
+        <NavLink
+          to="/"
+          exact
+          style={link}
+          activeStyle={{
+            background: 'darkblue'
+          }}
+        >Add A note</NavLink>
       </div>
     )
   }

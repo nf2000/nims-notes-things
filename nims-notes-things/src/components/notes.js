@@ -1,31 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Pin from "../pin.jpeg";
+import Button from "./Button";
 
 function Notes() {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
 
+  const [sorted, setSorted] = useState(false);
+
+  const sortNote = (e) => {
+    e.preventDefault();
+    setSorted(!sorted);
+  };
+
+  const notemap = () => {
+    let sortedData = [...notes];
+    if (sorted) {
+      sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
+    }
+    return sortedData.map((note, index) => {
+      return (
+        <Note key={note.id}>
+          <PinImage
+            src={Pin}
+            height={20}
+            alt="Picture not available"
+          ></PinImage>
+          <NoteNumber> {index + 1}</NoteNumber>
+          <Header>
+            <p>{note.name}</p>
+            <p>{note.date}</p>
+          </Header>
+          <Content>{note.note}</Content>
+        </Note>
+      );
+    });
+  };
+
   return (
     <div>
-      {notes.map((note, index) => {
-        return (
-          <Note key={note.id}>
-            <PinImage src={Pin} height={20} alt=""></PinImage>
-            <NoteNumber> {index + 1}</NoteNumber>
-            <Header>
-              <p>{note.name}</p>
-              <p>{note.date}</p>
-            </Header>
-            <Content>{note.note}</Content>
-          </Note>
-        );
-      })}
+      {notes.length !== 0 && (
+        <Button onClick={sortNote}>{sorted ? "unsort" : "sort"}</Button>
+      )}
+      {notemap()}
     </div>
   );
 }
+
 export default Notes;
 
 const Note = styled.div`

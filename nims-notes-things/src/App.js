@@ -14,11 +14,11 @@ function App() {
       <div className="App">
         <Header>Nims Notes Things</Header>
         <Router>
-          <Navbar/>
-            <Routes>
-              <Route path="/" element={<Form />} />
-              <Route path="/notes" element={<Notes />} />
-            </Routes>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Form />} />
+            <Route path="/notes" element={<Notes />} />
+          </Routes>
         </Router>
       </div>
     </Provider>

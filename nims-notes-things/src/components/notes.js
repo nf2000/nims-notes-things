@@ -15,7 +15,7 @@ function Notes() {
           <div>
             <Note>
               <PinImage src={Pin} alt=""></PinImage>
-              <NoteNumber> {index + 1}</NoteNumber>
+              <NoteNumber>{index + 1}</NoteNumber>
               <Header>
                 <p>{note.name}</p>
                 <p>{note.date}</p>

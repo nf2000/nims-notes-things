@@ -1,6 +1,7 @@
 import * as noteActionTypes from "./noteActionTypes";
 
-export const setNote = (value) => { // object formDataCopy from forms
+// object formDataCopy from forms
+export const setNote = (value) => {
   return {
     type: noteActionTypes.SET_NOTE,
     value,

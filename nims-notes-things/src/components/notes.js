@@ -16,7 +16,7 @@ function Notes() {
     setSorted(!sorted);
   };
 
-  const notemap = () => {
+  const noteMap = () => {
     let sortedData = [...notes];
     if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
@@ -45,7 +45,7 @@ function Notes() {
       {notes.length !== 0 && (
         <Button onClick={sortNote}>{sorted ? "unsort" : "sort"}</Button>
       )}
-      {notemap()}
+      {noteMap()}
     </div>
   );
 }

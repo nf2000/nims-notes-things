@@ -55,6 +55,9 @@ const Form = (props) => {
     }
   };
 
+  const notesCreated = (event) => {
+    alert("Note created!");
+  };
   const handleOnBlur = (key) => {
     emptyData.current[key].innerHTML =
       formData[key] === "" ? `${key} required` : "";

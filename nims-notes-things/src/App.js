@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Notes from "./components/notes";
+import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -13,10 +14,11 @@ function App() {
       <div className="App">
         <Header>Nims Notes Things</Header>
         <Router>
-          <Routes>
-            <Route path="/" element={<Form />} />
-            <Route path="/notes" element={<Notes />} />
-          </Routes>
+          <Navbar/>
+            <Routes>
+              <Route path="/" element={<Form />} />
+              <Route path="/notes" element={<Notes />} />
+            </Routes>
         </Router>
       </div>
     </Provider>

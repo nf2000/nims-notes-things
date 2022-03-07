@@ -24,7 +24,11 @@ function Notes() {
     return sortedData.map((note, index) => {
       return (
         <Note key={note.id}>
-          <PinImage src={Pin} height={20} alt=""></PinImage>
+          <PinImage
+            src={Pin}
+            height={20}
+            alt="Picture not available"
+          ></PinImage>
           <NoteNumber> {index + 1}</NoteNumber>
           <Header>
             <p>{note.name}</p>
@@ -38,16 +42,14 @@ function Notes() {
 
   return (
     <div>
-      {notes.length !== 0 ? <Button onClick={sortNote}> click</Button> : null}
-      {sorted ? (
-        <Button onClick={sortNote}> Unsort </Button>
-      ) : (
-        <Button onClick={sortNote}> Sort</Button>
+      {notes.length !== 0 && (
+        <Button onClick={sortNote}>{sorted ? "unsort" : "sort"}</Button>
       )}
       {notemap()}
     </div>
   );
 }
+
 export default Notes;
 
 const Note = styled.div`

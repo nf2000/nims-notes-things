@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
@@ -17,6 +17,8 @@ const Form = (props) => {
 
   const dispatch = useDispatch();
 
+  const emptyData = useRef({});
+
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
@@ -30,20 +32,20 @@ const Form = (props) => {
   };
 
   const validateSubmit = () => {
-    let isValidated = false;
+    let isEmpty = true;
     Object.keys(formData).forEach((key) => {
       if (formData[key].length === 0) {
         handleOnBlur(key);
-        return (isValidated = true);
+        return isEmpty = false;
       }
     });
-    return isValidated;
+    return isEmpty;
   };
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const isValidated = validateSubmit();
-    if (!isValidated) {
+    if (isValidated) {
       const uniqueId = uuidv4();
       const formDataCopy = {
         ...formData,
@@ -54,19 +56,19 @@ const Form = (props) => {
   };
 
   const handleOnBlur = (key) => {
-    if (formData[key] === "") {
-      document.getElementById(key).innerHTML = key + " required";
-    } else {
-      document.getElementById(key).innerHTML = "";
-    }
+    emptyData.current[key].innerHTML =
+      formData[key] === "" ? `${key} required` : "";
   };
 
   return (
     <StyledForm onSubmit={handleOnSubmit}>
       <StyledDiv>
         <InnerForm>
-          {notes.length === 0 ? <p> Please Enter your Note</p> : null}
-          {<ErrorMessage id="name"></ErrorMessage>}
+          {notes.length === 0 && <p> Please Enter your Note</p>}
+          <ErrorMessage
+            id="name"
+            ref={(element) => (emptyData.current["name"] = element)}
+          ></ErrorMessage>
           <Input
             name="name"
             placeholder="Please enter Your name"
@@ -74,7 +76,10 @@ const Form = (props) => {
             onBlur={(e) => handleOnBlur("name")}
             value={formData.name}
           />
-          {<ErrorMessage id="date"> </ErrorMessage>}
+          <ErrorMessage
+            id="date"
+            ref={(element) => (emptyData.current["date"] = element)}
+          ></ErrorMessage>
           <Input
             name="date"
             type="date"
@@ -83,7 +88,10 @@ const Form = (props) => {
             onBlur={(e) => handleOnBlur("date")}
             value={formData.date}
           />
-          {<ErrorMessage id="note"> </ErrorMessage>}
+          <ErrorMessage
+            id="note"
+            ref={(element) => (emptyData.current["note"] = element)}
+          ></ErrorMessage>
           <TextArea
             name="note"
             placeholder="Please enter Your Note"

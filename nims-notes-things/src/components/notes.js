@@ -37,7 +37,7 @@ const Note = styled.div`
   margin: 10px;
   padding: 20px;
   float: left;
-  box-shadow:  0 0 5px green;
+  box-shadow: 0 0 5px green;
   }
 `;
 

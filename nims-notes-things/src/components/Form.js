@@ -52,12 +52,10 @@ const Form = (props) => {
         id: uniqueId,
       };
       dispatch(setNote(formDataCopy));
+      alert("Note has been created :) ")
     }
   };
 
-  const notesCreated = (event) => {
-    alert("Note created!");
-  };
   const handleOnBlur = (key) => {
     emptyData.current[key].innerHTML =
       formData[key] === "" ? `${key} required` : "";

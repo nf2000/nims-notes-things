@@ -52,7 +52,7 @@ const Form = (props) => {
         id: uniqueId,
       };
       dispatch(setNote(formDataCopy));
-      alert("Note has been created :) ")
+      alert("Note has been created :) ");
     }
   };
 

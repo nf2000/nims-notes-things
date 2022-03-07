@@ -101,7 +101,7 @@ const Form = (props) => {
           />
         </InnerForm>
       </StyledDiv>
-      <Button background="blue" type="submit">
+      <Button background="blue" type="submit" to="/notes">
         Submit
       </Button>
     </StyledForm>

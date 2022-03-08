@@ -3,7 +3,7 @@ import * as actions from "../actions/noteActionTypes";
 
 export const initialState = {
   //whatever passed in - state arrary -> passed inside export function
-  value: [],
+  value: [], sorted : false
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -14,7 +14,8 @@ export default function (state = initialState, action) {
       notesArray.push(action.value);
       return { ...state, value: notesArray };
     case actions.SET_SORTED:
-      return { ...state, value: setSorted };
+      const set_sorted = state.sorted
+      return { ...state, sorted: !set_sorted };
     default:
       return state;
   }

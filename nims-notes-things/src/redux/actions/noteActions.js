@@ -8,9 +8,8 @@ export const setNote = (value) => {
   };
 };
 
-export const setSorted = (value) => {
+export const setSorted = () => {
   return {
     type: noteActionTypes.SET_SORTED,
-    value,
   };
 };

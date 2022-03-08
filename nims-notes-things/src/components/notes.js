@@ -5,7 +5,6 @@ import Pin from "../pin.jpeg";
 import Button from "./Button";
 import { setSorted } from "../redux/actions/noteActions";
 
-
 function Notes() {
   const notes = useSelector((state) => {
     return state.noteReducer.value;

@@ -45,7 +45,7 @@ function Notes() {
       {notes.length !== 0 ? (
         <Button onClick={sortNote}>{sorted ? "unsort" : "sort"}</Button>
       ) : (
-        notes.length === 0 && <p> There are no notes currently</p>
+        <p> There are no notes currently</p>
       )}
       {noteMap()}
     </div>

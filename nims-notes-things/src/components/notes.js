@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Pin from "../pin.jpeg";
 import Button from "./Button";
 
@@ -11,9 +11,14 @@ function Notes() {
 
   const [sorted, setSorted] = useState(false);
 
+  const dispatch = useDispatch();
+
+
   const sortNote = (e) => {
     e.preventDefault();
-    setSorted(!sorted);
+    //setSorted(!sorted);
+    dispatch(setSorted(!sorted));
+
   };
 
   const noteMap = () => {

@@ -7,3 +7,10 @@ export const setNote = (value) => {
     value,
   };
 };
+
+export const setSorted = (value) => {
+  return {
+    type: noteActionTypes.SET_SORTED,
+    value,
+  };
+};

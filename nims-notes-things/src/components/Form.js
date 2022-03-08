@@ -101,10 +101,9 @@ const Form = (props) => {
           />
         </InnerForm>
       </StyledDiv>
-      <Button background="blue" type="submit" to="/notes">
+      <Button  type="submit" to="/notes">
         Submit
       </Button>
-      {notes.length === 0 && <p> There are no notes currently</p>}
     </StyledForm>
   );
 };

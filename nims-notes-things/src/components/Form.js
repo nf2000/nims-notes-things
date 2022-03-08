@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
@@ -12,19 +12,17 @@ const Form = (props) => {
     name: "",
     date: "",
     note: "",
-  });
-
-  const [empty, setFormEmpty] = useState({
-    name: false,
-    date: false,
-    note: false,
+    valid: false,
   });
 
   const dispatch = useDispatch();
 
+  const emptyData = useRef({});
+
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
+
   const handleOnChange = (e, key) => {
     const newForm = {
       ...formData,
@@ -34,19 +32,14 @@ const Form = (props) => {
   };
 
   const validateSubmit = () => {
-    let isValidated = true;
+    let isEmpty = true;
     Object.keys(formData).forEach((key) => {
-      if (formData[key] === "") {
-        setFormEmpty((previousState) => {
-          return {
-            ...previousState,
-            [key]: true,
-          };
-        });
-        return (isValidated = false);
+      if (formData[key].length === 0) {
+        handleOnBlur(key);
+        return isEmpty = false;
       }
     });
-    return isValidated;
+    return isEmpty;
   };
 
   const handleOnSubmit = (event) => {
@@ -58,55 +51,59 @@ const Form = (props) => {
         ...formData,
         id: uniqueId,
       };
-      const notesCopy = [...notes];
-      notesCopy.push(formDataCopy);
-      dispatch(setNote(notesCopy));
+      dispatch(setNote(formDataCopy));
     }
   };
 
-  const handleOnBlur = (value, key) => {
-    setFormEmpty((previousState) => {
-      return {
-        ...previousState,
-        [key]: value === "",
-      };
-    });
+  const handleOnBlur = (key) => {
+    emptyData.current[key].innerHTML =
+      formData[key] === "" ? `${key} required` : "";
   };
 
   return (
     <StyledForm onSubmit={handleOnSubmit}>
       <StyledDiv>
         <InnerForm>
-          {empty.name && <ErrorMessage>Name field is required</ErrorMessage>}
+          <ErrorMessage
+            id="name"
+            ref={(element) => (emptyData.current["name"] = element)}
+          ></ErrorMessage>
           <Input
             name="name"
             placeholder="Please enter Your name"
             onChange={(e) => handleOnChange(e, "name")}
-            onBlur={(e) => handleOnBlur(e.target.value, "name")}
+            onBlur={(e) => handleOnBlur("name")}
             value={formData.name}
           />
-          {empty.date && <ErrorMessage>Date field is required</ErrorMessage>}
+          <ErrorMessage
+            id="date"
+            ref={(element) => (emptyData.current["date"] = element)}
+          ></ErrorMessage>
           <Input
             name="date"
             type="date"
             placeholder="Please enter the date"
             onChange={(e) => handleOnChange(e, "date")}
-            onBlur={(e) => handleOnBlur(e.target.value, "date")}
+            onBlur={(e) => handleOnBlur("date")}
             value={formData.date}
           />
-          {empty.note && <ErrorMessage>Note field is required</ErrorMessage>}
+          <ErrorMessage
+            id="note"
+            ref={(element) => (emptyData.current["note"] = element)}
+          ></ErrorMessage>
           <TextArea
             name="note"
             placeholder="Please enter Your Note"
             onChange={(e) => handleOnChange(e, "note")}
-            onBlur={(e) => handleOnBlur(e.target.value, "note")}
+            onBlur={(e) => handleOnBlur("note")}
             value={formData.note}
           />
         </InnerForm>
       </StyledDiv>
-      <Button background="red" type="submit">
+      <Button background="blue" type="submit">
         Submit
       </Button>
+      {notes.length === 0 && <p> There are no notes currently</p>}
     </StyledForm>
   );
 };

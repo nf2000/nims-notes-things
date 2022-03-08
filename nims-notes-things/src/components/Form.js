@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import { setNote } from "../redux/actions/noteActions";
 
-
 const Form = (props) => {
   const [formData, setFormData] = useState({
     name: "",

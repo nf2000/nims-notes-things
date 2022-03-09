@@ -13,3 +13,13 @@ export const setSorted = () => {
     type: noteActionTypes.SET_SORTED,
   };
 };
+
+export const noteUpdated = (state, action) => {
+  const { id, name, date, note } = action.payload;
+  const existingNote = state.find((post) => note.id === id);
+  if (existingNote) {
+    existingNote.name = name;
+    existingNote.date = date;
+    existingNote.note = note;
+  }
+};

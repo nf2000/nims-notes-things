@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Pin from "../pin.jpeg";
 import Button from "./Button";
+import { setSorted } from "../redux/actions/noteActions";
 
 function Notes() {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
 
-  const [sorted, setSorted] = useState(false);
+  const sorted = useSelector((state) => {
+    return state.noteReducer.sorted;
+  });
+
+  const dispatch = useDispatch();
 
   const sortNote = (e) => {
     e.preventDefault();
-    setSorted(!sorted);
+    dispatch(setSorted());
   };
 
   const noteMap = () => {

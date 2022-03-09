@@ -7,6 +7,7 @@ import store from "./redux/store";
 import Notes from "./components/notes";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Note } from "./components/Note";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Form />} />
             <Route path="/notes" element={<Notes />} />
-            <Route path="/notes/:id/update" element={<Form />} />
+            {/* <Route path="/notes/:id/update" element={<Form />} /> */}
+            <Route exact path="/notes/:noteId" component={<Note />} />
           </Routes>
         </Router>
       </div>

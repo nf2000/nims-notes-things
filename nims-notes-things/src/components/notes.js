@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Pin from "../pin.jpeg";
@@ -16,10 +16,6 @@ function Notes() {
   });
 
   const dispatch = useDispatch();
-
-  const update = () => {
-    notes.findIndex();
-  };
 
   const sortNote = (e) => {
     e.preventDefault();
@@ -45,8 +41,8 @@ function Notes() {
             <p>{note.date}</p>
           </Header>
           <Content>{note.note}</Content>
-          <NavLink to={`/notes/${note.id}/update`}>
-            <Button id={note.id} onClick={update}>
+          <NavLink to={`/notes/${note.id}`}>
+            <Button id={note.id} onClick={console.log("hello")}>
               Edit
             </Button>
           </NavLink>

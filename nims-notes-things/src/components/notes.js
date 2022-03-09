@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Pin from "../pin.jpeg";
 import Button from "./Button";
 import { setSorted } from "../redux/actions/noteActions";
+import { NavLink } from "react-router-dom";
 
 function Notes() {
   const notes = useSelector((state) => {
@@ -15,6 +16,10 @@ function Notes() {
   });
 
   const dispatch = useDispatch();
+
+  const update = () => {
+    notes.findIndex();
+  };
 
   const sortNote = (e) => {
     e.preventDefault();
@@ -40,6 +45,11 @@ function Notes() {
             <p>{note.date}</p>
           </Header>
           <Content>{note.note}</Content>
+          <NavLink to={`/notes/${note.id}/update`}>
+            <Button id={note.id} onClick={update}>
+              Edit
+            </Button>
+          </NavLink>
         </Note>
       );
     });

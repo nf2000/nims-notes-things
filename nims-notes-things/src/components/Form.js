@@ -4,7 +4,7 @@ import TextArea from "./TextArea";
 import Input from "./Input";
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
-import { useSelector, useDispatch } from "react-redux";
+import {useDispatch } from "react-redux";
 import { setNote } from "../redux/actions/noteActions";
 
 const Form = (props) => {
@@ -12,16 +12,11 @@ const Form = (props) => {
     name: "",
     date: "",
     note: "",
-    valid: false,
   });
 
   const dispatch = useDispatch();
 
   const emptyData = useRef({});
-
-  const notes = useSelector((state) => {
-    return state.noteReducer.value;
-  });
 
   const handleOnChange = (e, key) => {
     const newForm = {
@@ -52,6 +47,7 @@ const Form = (props) => {
         id: uniqueId,
       };
       dispatch(setNote(formDataCopy));
+      alert("Note has been created :) ");
     }
   };
 
@@ -100,10 +96,9 @@ const Form = (props) => {
           />
         </InnerForm>
       </StyledDiv>
-      <Button background="blue" type="submit">
+      <Button  type="submit" to="/notes">
         Submit
       </Button>
-      {notes.length === 0 && <p> There are no notes currently</p>}
     </StyledForm>
   );
 };

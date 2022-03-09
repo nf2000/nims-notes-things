@@ -1,21 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import Theme from "./Theme";
 
 const Button = (props) => {
   return (
-    <ButtonStyle background={props.background} {...props}>
-      {props.children}
-    </ButtonStyle>
+    <Theme>
+      <ButtonStyle {...props}>
+        {props.children}
+      </ButtonStyle>
+    </Theme>
   );
 };
 
 const ButtonStyle = styled.button`
   border-radius: 200px;
-  border: 2px solid palevioletred;
-  background: ${(props) => props.background};
-  disabled: ${(props) => props.disabled};
-  margin: 0.5em 1em;
-  padding: 0.25em 1em;
+  border: ${(props) => props.theme.button.border};
+  background: ${(props) => props.theme.button.background};
+  margin: ${(props) => props.theme.button.margin};
+  padding: ${(props) => props.theme.button.padding};
 `;
 
 export default Button;

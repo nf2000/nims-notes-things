@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
@@ -21,7 +21,11 @@ const Form = (props, { match }) => {
     return state.noteReducer.value;
   });
 
-  const existingNote = notes.find((note) => note.id === noteId);
+  useEffect(() => {
+    const existingNote = notes.find((note) => note.id === noteId);
+    if (!existingNote) return;
+    setFormData(existingNote);
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -32,7 +36,6 @@ const Form = (props, { match }) => {
       ...formData,
       [key]: e.target.value,
     };
-    console.log(newForm);
     setFormData(newForm);
   };
 
@@ -80,7 +83,7 @@ const Form = (props, { match }) => {
             placeholder="Please enter Your name"
             onChange={(e) => handleOnChange(e, "name")}
             onBlur={(e) => handleOnBlur("name")}
-            value={noteId ? existingNote.name : formData.name}
+            value={formData.name}
           />
           <ErrorMessage
             id="date"
@@ -92,7 +95,7 @@ const Form = (props, { match }) => {
             placeholder="Please enter the date"
             onChange={(e) => handleOnChange(e, "date")}
             onBlur={(e) => handleOnBlur("date")}
-            value={noteId ? existingNote.date : formData.date}
+            value={formData.date}
           />
           <ErrorMessage
             id="note"
@@ -103,7 +106,7 @@ const Form = (props, { match }) => {
             placeholder="Please enter Your Note"
             onChange={(e) => handleOnChange(e, "note")}
             onBlur={(e) => handleOnBlur("note")}
-            value={noteId ? existingNote.note : formData.note}
+            value={formData.note}
           />
         </InnerForm>
       </StyledDiv>

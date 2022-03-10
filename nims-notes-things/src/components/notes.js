@@ -41,7 +41,8 @@ function Notes() {
             <p>{note.date}</p>
           </Header>
           <Content>{note.note}</Content>
-          <NavLink to={`/notes/${note.id}`}>
+          <NavLink to={`/editNote/${note.id}`}>
+            {console.log(`/note/${note.id}`)}
             <Button id={note.id} onClick={console.log("hello")}>
               Edit
             </Button>

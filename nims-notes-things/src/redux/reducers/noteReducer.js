@@ -15,6 +15,14 @@ export default function (state = initialState, action) {
     case actions.SET_SORTED:
       const setSorted = state.sorted;
       return { ...state, sorted: !setSorted };
+    case actions.SET_UPDATE_NOTE:
+      const { noteId, name } = action.payload;
+      const existingNote = state.find((note) => note.id === noteId);
+      if (existingNote) {
+        existingNote.name = name;
+        alert("hello");
+      }
+      return { ...state, value: existingNote };
     default:
       return state;
   }

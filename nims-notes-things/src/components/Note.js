@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import Button from "./Button";
 
-export const Note = ({ match }) => {
+const Note = ({ match }) => {
   const { noteId } = match.params;
 
   const note = useSelector((state) =>
-    state.notes.find((note) => note.id === noteId)
+    state.noteReducer.find((note) => note.id === noteId)
   );
 
   if (!note) {
@@ -17,12 +19,16 @@ export const Note = ({ match }) => {
   }
 
   return (
-    <section>
-      <article className="post">
-        <h2>{note.name}</h2>
-        <p className="post-content">{note.content}</p>
-      </article>
-    </section>
+    <div>
+      <p>{note.name}</p>
+      <p>{note.date}</p>
+      {note.note}
+      <NavLink to={`/editNote/${note.id}`}>
+        <Button id={note.id} onClick={console.log("hello")}>
+          Edit
+        </Button>
+      </NavLink>
+    </div>
   );
 };
 

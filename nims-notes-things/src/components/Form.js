@@ -32,6 +32,7 @@ const Form = (props, { match }) => {
       ...formData,
       [key]: e.target.value,
     };
+    console.log(newForm);
     setFormData(newForm);
   };
 
@@ -75,6 +76,7 @@ const Form = (props, { match }) => {
           ></ErrorMessage>
           <Input
             name="name"
+            type="text"
             placeholder="Please enter Your name"
             onChange={(e) => handleOnChange(e, "name")}
             onBlur={(e) => handleOnBlur("name")}

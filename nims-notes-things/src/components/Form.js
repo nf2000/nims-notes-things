@@ -4,15 +4,26 @@ import TextArea from "./TextArea";
 import Input from "./Input";
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
-import {useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setNote } from "../redux/actions/noteActions";
+import { useParams } from "react-router";
 
-const Form = (props) => {
+const Form = (props, { match }) => {
   const [formData, setFormData] = useState({
     name: "",
     date: "",
     note: "",
   });
+
+  const notes = useSelector((state) => {
+    return state.noteReducer.value;
+  });
+
+  // const [formExisitingNote, setFormExisitingNote] = useState({
+  //   name: existingNote.name,
+  //   date: existingNote.date,
+  //   note: existingNote.note,
+  // });
 
   const dispatch = useDispatch();
 
@@ -31,7 +42,7 @@ const Form = (props) => {
     Object.keys(formData).forEach((key) => {
       if (formData[key].length === 0) {
         handleOnBlur(key);
-        return isEmpty = false;
+        return (isEmpty = false);
       }
     });
     return isEmpty;
@@ -96,9 +107,10 @@ const Form = (props) => {
           />
         </InnerForm>
       </StyledDiv>
-      <Button  type="submit" to="/notes">
+      <Button type="submit" to="/notes">
         Submit
       </Button>
+      {/* {<p> {existingNote[0].name}</p>} */}
     </StyledForm>
   );
 };

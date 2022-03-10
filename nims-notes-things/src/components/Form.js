@@ -105,10 +105,14 @@ const Form = (props, { match }) => {
           />
         </InnerForm>
       </StyledDiv>
-      <Button type="submit" to="/notes">
-        Submit
-      </Button>
-      {/* {<p> {existingNote[0].name}</p>} */}
+
+      {noteId ? (
+        <Button> update </Button>
+      ) : (
+        <Button type="submit" to="/notes">
+          Submit
+        </Button>
+      )}
     </StyledForm>
   );
 };

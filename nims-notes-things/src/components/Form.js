@@ -9,6 +9,8 @@ import { setNote } from "../redux/actions/noteActions";
 import { useParams } from "react-router";
 
 const Form = (props, { match }) => {
+  let { noteId } = useParams();
+
   const [formData, setFormData] = useState({
     name: "",
     date: "",
@@ -19,11 +21,7 @@ const Form = (props, { match }) => {
     return state.noteReducer.value;
   });
 
-  // const [formExisitingNote, setFormExisitingNote] = useState({
-  //   name: existingNote.name,
-  //   date: existingNote.date,
-  //   note: existingNote.note,
-  // });
+  const existingNote = notes.find((note) => note.id === noteId);
 
   const dispatch = useDispatch();
 
@@ -80,7 +78,7 @@ const Form = (props, { match }) => {
             placeholder="Please enter Your name"
             onChange={(e) => handleOnChange(e, "name")}
             onBlur={(e) => handleOnBlur("name")}
-            value={formData.name}
+            value={noteId ? existingNote.name : formData.name}
           />
           <ErrorMessage
             id="date"
@@ -92,7 +90,7 @@ const Form = (props, { match }) => {
             placeholder="Please enter the date"
             onChange={(e) => handleOnChange(e, "date")}
             onBlur={(e) => handleOnBlur("date")}
-            value={formData.date}
+            value={noteId ? existingNote.date : formData.date}
           />
           <ErrorMessage
             id="note"
@@ -103,7 +101,7 @@ const Form = (props, { match }) => {
             placeholder="Please enter Your Note"
             onChange={(e) => handleOnChange(e, "note")}
             onBlur={(e) => handleOnBlur("note")}
-            value={formData.note}
+            value={noteId ? existingNote.note : formData.note}
           />
         </InnerForm>
       </StyledDiv>

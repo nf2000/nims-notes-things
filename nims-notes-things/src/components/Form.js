@@ -65,7 +65,7 @@ const Form = (props, { match }) => {
         id: uniqueId,
       };
       dispatch(setNote(formDataCopy));
-      toast.success("Note created successfully :)", {
+      toast.success("Note Created Successfully :)", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -87,7 +87,7 @@ const Form = (props, { match }) => {
           ...formData,
         };
         dispatch(setUpdatedNote(formDataCopy));
-        toast.success("Note is updated succesfully :)", {
+        toast.success("Note is Updated Succesfully :)", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,

@@ -4,7 +4,7 @@ import TextArea from "./TextArea";
 import Input from "./Input";
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
-import {useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setNote } from "../redux/actions/noteActions";
 
 const Form = (props) => {
@@ -31,7 +31,7 @@ const Form = (props) => {
     Object.keys(formData).forEach((key) => {
       if (formData[key].length === 0) {
         handleOnBlur(key);
-        return isEmpty = false;
+        return (isEmpty = false);
       }
     });
     return isEmpty;
@@ -96,7 +96,7 @@ const Form = (props) => {
           />
         </InnerForm>
       </StyledDiv>
-      <Button  type="submit" to="/notes">
+      <Button type="submit" to="/notes">
         Submit
       </Button>
     </StyledForm>

@@ -18,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Form />} />
             <Route path="/notes" element={<Notes />} />
+            <Route exact path="/deleteNote/:noteId" element={<Notes />} />
           </Routes>
         </Router>
       </div>

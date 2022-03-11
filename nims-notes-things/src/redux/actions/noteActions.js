@@ -13,3 +13,10 @@ export const setSorted = () => {
     type: noteActionTypes.SET_SORTED,
   };
 };
+
+export const setDeleted = (value) => {
+  return {
+    type: noteActionTypes.SET_DELETED,
+    value,
+  };
+};

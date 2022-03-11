@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Pin from "../pin.jpeg";
 import Button from "./Button";
-import { setSorted } from "../redux/actions/noteActions";
+import { setDeleted, setSorted } from "../redux/actions/noteActions";
+import { NavLink } from "react-router-dom";
+import formData from "./Form";
 
 function Notes() {
   const notes = useSelector((state) => {
@@ -19,6 +21,11 @@ function Notes() {
   const sortNote = (e) => {
     e.preventDefault();
     dispatch(setSorted());
+  };
+
+  const deleteNote = (e) => {
+    e.preventDefault();
+    dispatch(setDeleted(formData));
   };
 
   const noteMap = () => {
@@ -40,6 +47,11 @@ function Notes() {
             <p>{note.date}</p>
           </Header>
           <Content>{note.note}</Content>
+          <NavLink to={`/deleteNote/${note.id}`}>
+            <Button id={note.id} onClick={deleteNote}>
+              Delete{" "}
+            </Button>
+          </NavLink>
         </Note>
       );
     });

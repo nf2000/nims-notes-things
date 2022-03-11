@@ -15,6 +15,17 @@ export default function (state = initialState, action) {
     case actions.SET_SORTED:
       const setSorted = state.sorted;
       return { ...state, sorted: !setSorted };
+    case actions.SET_DELETED:
+      const deletedNote = action.value;
+      // const deletedNoteState = state.value.map((note) =>
+      //   note.id === deletedNote.id
+      //     ? deletedNote.splice(note.id, 1)
+      //     : alert("hello")
+      const deletedNoteState = deletedNote.splice(
+        deletedNote.findIndex((note) => note.id === action.value.id),
+        1
+      );
+      return { ...state, value: deletedNoteState };
     default:
       return state;
   }

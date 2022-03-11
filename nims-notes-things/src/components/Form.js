@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
@@ -63,7 +65,15 @@ const Form = (props, { match }) => {
         id: uniqueId,
       };
       dispatch(setNote(formDataCopy));
-      alert("Note has been created! :) ");
+      toast.success("Note created successfully :)", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       navigate("/notes", { replace: true });
     }
   };
@@ -77,7 +87,15 @@ const Form = (props, { match }) => {
           ...formData,
         };
         dispatch(setUpdatedNote(formDataCopy));
-        alert("Note has been updated! :) ");
+        toast.success("Note is updated succesfully :)", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         navigate("/notes", { replace: true });
       }
     }

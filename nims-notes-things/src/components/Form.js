@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setNote } from "../redux/actions/noteActions";
 import { useParams } from "react-router";
 import { setUpdatedNote } from "../redux/actions/noteActions";
+import { useNavigate } from "react-router";
 
 const Form = (props, { match }) => {
   let { noteId } = useParams();
@@ -29,6 +30,7 @@ const Form = (props, { match }) => {
   }, []);
 
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const emptyData = useRef({});
 
@@ -62,6 +64,7 @@ const Form = (props, { match }) => {
       };
       dispatch(setNote(formDataCopy));
       alert("Note has been created! :) ");
+      navigate("/notes", { replace: true });
     }
   };
 
@@ -75,6 +78,7 @@ const Form = (props, { match }) => {
         };
         dispatch(setUpdatedNote(formDataCopy));
         alert("Note has been updated! :) ");
+        navigate("/notes", { replace: true });
       }
     }
   };
@@ -125,11 +129,9 @@ const Form = (props, { match }) => {
           />
         </InnerForm>
         {!noteId ? (
-          <Button type="submit" to="/notes">
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         ) : (
-          <Button onClick={handleOnUpdate}> update </Button>
+          <Button onClick={handleOnUpdate}>Update</Button>
         )}
       </StyledForm>
     </StyledDiv>

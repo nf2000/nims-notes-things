@@ -17,9 +17,6 @@ const Navbar = () => {
       <NavLink to="/" style={link}>
         Add A note
       </NavLink>
-      <NavLink to="/editNote" style={link}>
-        Edit
-      </NavLink>
     </div>
   );
 };

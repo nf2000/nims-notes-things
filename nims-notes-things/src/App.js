@@ -7,8 +7,6 @@ import store from "./redux/store";
 import Notes from "./components/notes";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import Note from "./components/Note";
-import EditNoteFrom from "./components/EditNoteForm";
 
 function App() {
   return (

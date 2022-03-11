@@ -14,9 +14,9 @@ export const setSorted = () => {
   };
 };
 
-export const setUpdatedNote = (id) => {
+export const setUpdatedNote = (value) => {
   return {
     type: noteActionTypes.SET_UPDATE_NOTE,
-    payload: id,
+    value,
   };
 };

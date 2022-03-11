@@ -1,3 +1,4 @@
+import { setUpdatedNote } from "../actions/noteActions";
 import * as actions from "../actions/noteActionTypes";
 
 export const initialState = {
@@ -16,13 +17,21 @@ export default function (state = initialState, action) {
       const setSorted = state.sorted;
       return { ...state, sorted: !setSorted };
     case actions.SET_UPDATE_NOTE:
-      const { noteId, name } = action.payload;
-      const existingNote = state.find((note) => note.id === noteId);
-      if (existingNote) {
-        existingNote.name = name;
-        alert("hello");
-      }
-      return { ...state, value: existingNote };
+      const noteUpdated = action.value;
+      const updatedNoteState = state.value.map((note) =>
+        note.id === noteUpdated.id
+          ? {
+              ...note,
+              name: noteUpdated.name,
+              date: noteUpdated.date,
+              note: noteUpdated.note,
+            }
+          : note
+      );
+      return {
+        ...state,
+        value: updatedNoteState,
+      };
     default:
       return state;
   }

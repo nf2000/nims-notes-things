@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { setNote } from "../redux/actions/noteActions";
 import { useParams } from "react-router";
+import { setUpdatedNote } from "../redux/actions/noteActions";
 
 const Form = (props, { match }) => {
   let { noteId } = useParams();
@@ -60,7 +61,21 @@ const Form = (props, { match }) => {
         id: uniqueId,
       };
       dispatch(setNote(formDataCopy));
-      alert("Note has been created :) ");
+      alert("Note has been created! :) ");
+    }
+  };
+
+  const handleOnUpdate = (event) => {
+    if (noteId) {
+      event.preventDefault();
+      const isValidated = validateSubmit();
+      if (isValidated) {
+        const formDataCopy = {
+          ...formData,
+        };
+        dispatch(setUpdatedNote(formDataCopy));
+        alert("Note has been updated! :) ");
+      }
     }
   };
 
@@ -70,8 +85,8 @@ const Form = (props, { match }) => {
   };
 
   return (
-    <StyledForm onSubmit={handleOnSubmit}>
-      <StyledDiv>
+    <StyledDiv>
+      <StyledForm onSubmit={!noteId ? handleOnSubmit : handleOnUpdate}>
         <InnerForm>
           <ErrorMessage
             id="name"
@@ -109,16 +124,15 @@ const Form = (props, { match }) => {
             value={formData.note}
           />
         </InnerForm>
-      </StyledDiv>
-
-      {noteId ? (
-        <Button> update </Button>
-      ) : (
-        <Button type="submit" to="/notes">
-          Submit
-        </Button>
-      )}
-    </StyledForm>
+        {!noteId ? (
+          <Button type="submit" to="/notes">
+            Submit
+          </Button>
+        ) : (
+          <Button onClick={handleOnUpdate}> update </Button>
+        )}
+      </StyledForm>
+    </StyledDiv>
   );
 };
 export default Form;

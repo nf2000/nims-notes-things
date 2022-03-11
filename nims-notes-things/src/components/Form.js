@@ -7,10 +7,8 @@ import Input from "./Input";
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { setNote } from "../redux/actions/noteActions";
-import { useParams } from "react-router";
-import { setUpdatedNote } from "../redux/actions/noteActions";
-import { useNavigate } from "react-router";
+import { setNote, setUpdatedNote } from "../redux/actions/noteActions";
+import { useNavigate, useParams } from "react-router";
 
 const Form = (props, { match }) => {
   let { noteId } = useParams();
@@ -32,7 +30,7 @@ const Form = (props, { match }) => {
   }, []);
 
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const emptyData = useRef({});
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Pin from "../pin.jpeg";
@@ -47,10 +47,12 @@ function Notes() {
             <p>{note.date}</p>
           </Header>
           <Content>{note.note}</Content>
-          <NavLink to={`/deleteNote/${note.id}`}>
-            <Button id={note.id} onClick={deleteNote}>
-              Delete{" "}
-            </Button>
+          <NavLink to={`/deleteNote/${note.id}`}></NavLink>
+          <Button id={note.id} onClick={deleteNote}>
+            Delete
+          </Button>
+          <NavLink to={`/editNote/${note.id}`}>
+            <Button id={note.id}>Edit</Button>
           </NavLink>
         </Note>
       );

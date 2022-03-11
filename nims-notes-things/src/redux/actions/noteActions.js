@@ -17,6 +17,11 @@ export const setSorted = () => {
 export const setDeleted = (value) => {
   return {
     type: noteActionTypes.SET_DELETED,
+  };
+};
+export const setUpdatedNote = (value) => {
+  return {
+    type: noteActionTypes.SET_UPDATE_NOTE,
     value,
   };
 };

@@ -18,9 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Form />} />
             <Route path="/notes" element={<Notes />} />
-            {/* <Route path="/notes/:id/update" element={<Form />} /> */}
             <Route exact path="/editNote/:noteId" element={<Form />} />
-            {/* /<Route exact path="/form" element={<EditNoteFrom />} />  */}
           </Routes>
         </Router>
       </div>

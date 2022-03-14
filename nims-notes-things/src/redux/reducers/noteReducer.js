@@ -17,10 +17,7 @@ export default function (state = initialState, action) {
       return { ...state, sorted: !setSorted };
     case actions.SET_DELETED:
       const ArrayOfNote = state.value.filter((note) => {
-        if (note.id === action.id) {
-          return false;
-        }
-        return true;
+        return note.id !== action.id;
       });
       return {
         ...state,

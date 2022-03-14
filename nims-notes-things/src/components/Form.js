@@ -106,7 +106,7 @@ const Form = (props, { match }) => {
 
   return (
     <StyledDiv>
-      <StyledForm onSubmit={!noteId ? handleOnSubmit : handleOnUpdate}>
+      <StyledForm onSubmit={noteId ? handleOnUpdate : handleOnSubmit}>
         <InnerForm>
           <ErrorMessage
             id="name"
@@ -144,10 +144,10 @@ const Form = (props, { match }) => {
             value={formData.note}
           />
         </InnerForm>
-        {!noteId ? (
-          <Button type="submit">Submit</Button>
-        ) : (
+        {noteId ? (
           <Button onClick={handleOnUpdate}>Update</Button>
+        ) : (
+          <Button type="submit">Submit</Button>
         )}
       </StyledForm>
     </StyledDiv>

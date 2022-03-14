@@ -15,6 +15,21 @@ export default function (state = initialState, action) {
     case actions.SET_SORTED:
       const setSorted = state.sorted;
       return { ...state, sorted: !setSorted };
+    case actions.SET_UPDATE_NOTE:
+      const noteUpdated = action.value;
+      const updatedNoteState = state.value.map((note) => {
+        if (note.id !== noteUpdated.id) return note;
+        return {
+          ...note,
+          name: noteUpdated.name,
+          date: noteUpdated.date,
+          note: noteUpdated.note,
+        };
+      });
+      return {
+        ...state,
+        value: updatedNoteState,
+      };
     default:
       return state;
   }

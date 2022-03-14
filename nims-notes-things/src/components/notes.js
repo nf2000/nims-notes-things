@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Pin from "../pin.jpeg";
 import Button from "./Button";
 import { setSorted } from "../redux/actions/noteActions";
+import { NavLink } from "react-router-dom";
 
 function Notes() {
   const notes = useSelector((state) => {
@@ -40,6 +41,9 @@ function Notes() {
             <p>{note.date}</p>
           </Header>
           <Content>{note.note}</Content>
+          <NavLink to={`/editNote/${note.id}`}>
+            <Button id={note.id}>Edit</Button>
+          </NavLink>
         </Note>
       );
     });

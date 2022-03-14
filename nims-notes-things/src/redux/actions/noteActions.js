@@ -13,3 +13,10 @@ export const setSorted = () => {
     type: noteActionTypes.SET_SORTED,
   };
 };
+
+export const setUpdatedNote = (value) => {
+  return {
+    type: noteActionTypes.SET_UPDATE_NOTE,
+    value,
+  };
+};

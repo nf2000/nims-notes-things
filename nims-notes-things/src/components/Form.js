@@ -1,20 +1,36 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 import TextArea from "./TextArea";
 import Input from "./Input";
 import Button from "./Button";
 import { v4 as uuidv4 } from "uuid";
-import {useDispatch } from "react-redux";
-import { setNote } from "../redux/actions/noteActions";
+import { useDispatch, useSelector } from "react-redux";
+import { setNote, setUpdatedNote } from "../redux/actions/noteActions";
+import { useNavigate, useParams } from "react-router";
 
-const Form = (props) => {
+const Form = (props, { match }) => {
+  let { noteId } = useParams();
+
   const [formData, setFormData] = useState({
     name: "",
     date: "",
     note: "",
   });
 
+  const notes = useSelector((state) => {
+    return state.noteReducer.value;
+  });
+
+  useEffect(() => {
+    const existingNote = notes.find((note) => note.id === noteId);
+    if (!existingNote) return;
+    setFormData(existingNote);
+  }, []);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const emptyData = useRef({});
 
@@ -31,7 +47,7 @@ const Form = (props) => {
     Object.keys(formData).forEach((key) => {
       if (formData[key].length === 0) {
         handleOnBlur(key);
-        return isEmpty = false;
+        return (isEmpty = false);
       }
     });
     return isEmpty;
@@ -47,7 +63,39 @@ const Form = (props) => {
         id: uniqueId,
       };
       dispatch(setNote(formDataCopy));
-      alert("Note has been created :) ");
+      toast.success("Note Created Successfully :)", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      navigate("/notes", { replace: true });
+    }
+  };
+
+  const handleOnUpdate = (event) => {
+    if (noteId) {
+      event.preventDefault();
+      const isValidated = validateSubmit();
+      if (isValidated) {
+        const formDataCopy = {
+          ...formData,
+        };
+        dispatch(setUpdatedNote(formDataCopy));
+        toast.success("Note is Updated Succesfully :)", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        navigate("/notes", { replace: true });
+      }
     }
   };
 
@@ -57,8 +105,8 @@ const Form = (props) => {
   };
 
   return (
-    <StyledForm onSubmit={handleOnSubmit}>
-      <StyledDiv>
+    <StyledDiv>
+      <StyledForm onSubmit={!noteId ? handleOnSubmit : handleOnUpdate}>
         <InnerForm>
           <ErrorMessage
             id="name"
@@ -66,6 +114,7 @@ const Form = (props) => {
           ></ErrorMessage>
           <Input
             name="name"
+            type="text"
             placeholder="Please enter Your name"
             onChange={(e) => handleOnChange(e, "name")}
             onBlur={(e) => handleOnBlur("name")}
@@ -95,11 +144,13 @@ const Form = (props) => {
             value={formData.note}
           />
         </InnerForm>
-      </StyledDiv>
-      <Button  type="submit" to="/notes">
-        Submit
-      </Button>
-    </StyledForm>
+        {!noteId ? (
+          <Button type="submit">Submit</Button>
+        ) : (
+          <Button onClick={handleOnUpdate}>Update</Button>
+        )}
+      </StyledForm>
+    </StyledDiv>
   );
 };
 export default Form;

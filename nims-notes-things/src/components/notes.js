@@ -55,7 +55,6 @@ function Notes() {
             <p>{note.date}</p>
           </Header>
           <Content>{note.note}</Content>
-          <NavLink to={`/deleteNote/${note.id}`}></NavLink>
           <Button id={note.id} onClick={() => deleteNote(note.id)}>
             Delete
           </Button>

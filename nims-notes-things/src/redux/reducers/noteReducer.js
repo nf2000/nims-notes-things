@@ -16,16 +16,17 @@ export default function (state = initialState, action) {
       const setSorted = state.sorted;
       return { ...state, sorted: !setSorted };
     case actions.SET_DELETED:
-      const deletedNote = action.value;
-      // const deletedNoteState = state.value.map((note) =>
-      //   note.id === deletedNote.id
-      //     ? deletedNote.splice(note.id, 1)
-      //     : alert("hello")
-      const deletedNoteState = deletedNote.splice(
-        deletedNote.findIndex((note) => note.id === action.value.id),
-        1
-      );
-      return { ...state, value: deletedNoteState };
+      const ArrayOfNote = state.value.filter((note) => {
+        if (note.id === action.id) {
+          return false;
+        }
+        return true;
+      });
+      return {
+        ...state,
+        value: [...ArrayOfNote],
+      };
+
     case actions.SET_UPDATE_NOTE:
       const noteUpdated = action.value;
       const updatedNoteState = state.value.map((note) => {

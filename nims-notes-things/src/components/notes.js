@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Pin from "../pin.jpeg";
 import Button from "./Button";
-import { setSorted } from "../redux/actions/noteActions";
+import { setDeleted, setSorted } from "../redux/actions/noteActions";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Notes() {
   const notes = useSelector((state) => {
@@ -20,6 +21,19 @@ function Notes() {
   const sortNote = (e) => {
     e.preventDefault();
     dispatch(setSorted());
+  };
+
+  const deleteNote = (id) => {
+    dispatch(setDeleted(id));
+    toast.success("Note Deleted successfully :)", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const noteMap = () => {
@@ -41,6 +55,9 @@ function Notes() {
             <p>{note.date}</p>
           </Header>
           <Content>{note.note}</Content>
+          <Button id={note.id} onClick={() => deleteNote(note.id)}>
+            Delete
+          </Button>
           <NavLink to={`/editNote/${note.id}`}>
             <Button id={note.id}>Edit</Button>
           </NavLink>

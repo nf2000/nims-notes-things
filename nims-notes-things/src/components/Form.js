@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { setNote, setUpdatedNote } from "../redux/actions/noteActions";
 import { useNavigate, useParams } from "react-router";
+import postIt from "../post_it.png";
 
 const Form = (props, { match }) => {
   let { noteId } = useParams();
@@ -107,48 +108,50 @@ const Form = (props, { match }) => {
   return (
     <StyledDiv>
       <StyledForm onSubmit={noteId ? handleOnUpdate : handleOnSubmit}>
-        <InnerForm>
-          <ErrorMessage
-            id="name"
-            ref={(element) => (emptyData.current["name"] = element)}
-          ></ErrorMessage>
-          <Input
-            name="name"
-            type="text"
-            placeholder="Please enter Your name"
-            onChange={(e) => handleOnChange(e, "name")}
-            onBlur={(e) => handleOnBlur("name")}
-            value={formData.name}
-          />
-          <ErrorMessage
-            id="date"
-            ref={(element) => (emptyData.current["date"] = element)}
-          ></ErrorMessage>
-          <Input
-            name="date"
-            type="date"
-            placeholder="Please enter the date"
-            onChange={(e) => handleOnChange(e, "date")}
-            onBlur={(e) => handleOnBlur("date")}
-            value={formData.date}
-          />
-          <ErrorMessage
-            id="note"
-            ref={(element) => (emptyData.current["note"] = element)}
-          ></ErrorMessage>
-          <TextArea
-            name="note"
-            placeholder="Please enter Your Note"
-            onChange={(e) => handleOnChange(e, "note")}
-            onBlur={(e) => handleOnBlur("note")}
-            value={formData.note}
-          />
-        </InnerForm>
-        {noteId ? (
-          <Button onClick={handleOnUpdate}>Update</Button>
-        ) : (
-          <Button type="submit">Submit</Button>
-        )}
+        <PostItImage src={postIt} height={20} alt="Picture not available">
+          <InnerForm>
+            <ErrorMessage
+              id="name"
+              ref={(element) => (emptyData.current["name"] = element)}
+            ></ErrorMessage>
+            <Input
+              name="name"
+              type="text"
+              placeholder="Please enter Your name"
+              onChange={(e) => handleOnChange(e, "name")}
+              onBlur={(e) => handleOnBlur("name")}
+              value={formData.name}
+            />
+            <ErrorMessage
+              id="date"
+              ref={(element) => (emptyData.current["date"] = element)}
+            ></ErrorMessage>
+            <Input
+              name="date"
+              type="date"
+              placeholder="Please enter the date"
+              onChange={(e) => handleOnChange(e, "date")}
+              onBlur={(e) => handleOnBlur("date")}
+              value={formData.date}
+            />
+            <ErrorMessage
+              id="note"
+              ref={(element) => (emptyData.current["note"] = element)}
+            ></ErrorMessage>
+            <TextArea
+              name="note"
+              placeholder="Please enter Your Note"
+              onChange={(e) => handleOnChange(e, "note")}
+              onBlur={(e) => handleOnBlur("note")}
+              value={formData.note}
+            />
+          </InnerForm>
+          {noteId ? (
+            <Button onClick={handleOnUpdate}>Update</Button>
+          ) : (
+            <Button type="submit">Submit</Button>
+          )}
+        </PostItImage>
       </StyledForm>
     </StyledDiv>
   );
@@ -159,6 +162,13 @@ const StyledForm = styled.form``;
 
 const StyledDiv = styled.div``;
 
+const PostItImage = styled.div`
+  position: relative;
+  left: 100px;
+  bottom: 10px;
+  height: 1000px;
+`;
+
 const InnerForm = styled.div`
   display: flex;
   align-items: center;
@@ -166,7 +176,6 @@ const InnerForm = styled.div`
   padding: 5px;
   position: relative;
   margin: 5px;
-  background-color: white;
 `;
 
 const ErrorMessage = styled.p`

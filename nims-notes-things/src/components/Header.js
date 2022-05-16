@@ -6,7 +6,6 @@ const Header = (props) => {
 };
 
 const HeaderStyle = styled.div`
-  background-color: #282c34;
   min-height: 20vh;
   display: flex;
   flex-direction: column;
